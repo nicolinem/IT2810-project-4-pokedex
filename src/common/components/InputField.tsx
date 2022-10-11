@@ -8,14 +8,12 @@ type Props = {
 };
 function InputField({ onChange, name, placeholder, value = "" }: Props) {
   return (
-    <div className="">
-    <input className=""
-    onChange={onChange}
+    <input 
+        onChange={onChange}
         name={name}
         placeholder={placeholder}
         value={value}
       />
-    </div>
   );
 }
 

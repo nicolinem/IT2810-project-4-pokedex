@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 
 import Button from "./Button";
 import InputField from "./InputField";
@@ -22,22 +22,18 @@ function SearchForm({}: FormProps) {
   };
 
   return (
-    <div className="">
       <form onSubmit={handleSubmit}>
-        <div className="">
           <InputField
             onChange={onChangeSearchField}
             name="Pokemon name or number"
             placeholder="Enter pokemon name or number"
             value={pokemonNameNumberInputField}
           />
-        </div>
 
         <Button onClick={() => buttonClicked()}>
           Search
         </Button>
       </form>
-    </div>
   );
 }
 
