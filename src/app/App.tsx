@@ -7,9 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header" />
       <Navbar></Navbar>
-      <SearchForm fetchData={function (projectName: string, token: string): void {
-        throw new Error("Function not implemented.");
-      } }></SearchForm>
+      <SearchForm></SearchForm>
     </div>
   );
 }

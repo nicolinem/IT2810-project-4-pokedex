@@ -3,11 +3,8 @@ import React, {useState } from "react";
 import Button from "./Button";
 import InputField from "./InputField";
 
-interface FormProps {
-  fetchData: (projectName: string, token: string) => void;
-}
 
-function SearchForm({}: FormProps) {
+function SearchForm() {
 
   const [pokemonNameNumberInputField, setRepoNameInput] = useState("");
 
