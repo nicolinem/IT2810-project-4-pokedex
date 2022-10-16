@@ -5,14 +5,14 @@ type Props = {
   onClick?: () => void;
   className?: string;
   href?: string;
-  style?: {};
 };
 const Button: React.FC<Props> = ({
   children,
   onClick,
+  className
 }) => {
   return (
-    <button onClick={onClick}>
+    <button onClick={onClick} className={className}>
       {children}
     </button>
   );
