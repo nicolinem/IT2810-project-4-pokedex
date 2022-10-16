@@ -1,0 +1,12 @@
+type Pokemon {
+  total: Int
+  type2: String!
+  type1: String!
+  name: String!
+  pokemonID: Int
+  HP: Int
+}
+
+type Type {
+  name: String!
+}
