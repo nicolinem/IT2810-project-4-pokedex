@@ -56,8 +56,8 @@
     --text-tertiary: #fff;
     --text-for-details: #000;
 
-    --text-font-base: "Courier New", Courier, monospace;
-    --text-font-header: "Courier New", Courier, monospace;
+    --text-font-base: "Montserrat", sans-serif;
+    --text-font-header: "Montserrat", sans-serif;
 
     --text-space-base: 0em;
     --text-space-header: 0.1em;

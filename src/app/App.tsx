@@ -1,11 +1,13 @@
+import Card from "../common/components/card/Card";
 import Header from "../common/components/Header";
-import SearchForm from "../common/components/SearchForm";
 
 function App() {
   return (
     <div>
       <Header></Header>
-      <SearchForm></SearchForm>
+      <div className="flex justify-center py-5">
+        <Card></Card>
+      </div>
     </div>
   );
 }

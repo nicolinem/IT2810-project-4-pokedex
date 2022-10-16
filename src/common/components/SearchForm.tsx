@@ -1,11 +1,9 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 
-import Button from "./Button";
+import Button from "./button/Button";
 import InputField from "./InputField";
 
-
 function SearchForm() {
-
   const [pokemonNameNumberInputField, setRepoNameInput] = useState("");
 
   const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,18 +17,16 @@ function SearchForm() {
   };
 
   return (
-      <form onSubmit={handleSubmit}>
-          <InputField
-            onChange={onChangeSearchField}
-            name="Pokemon name or number"
-            placeholder="Enter pokemon name or number"
-            value={pokemonNameNumberInputField}
-          />
+    <form onSubmit={handleSubmit}>
+      <InputField
+        onChange={onChangeSearchField}
+        name="Pokemon name or number"
+        placeholder="Enter pokemon name or number"
+        value={pokemonNameNumberInputField}
+      />
 
-        <Button onClick={() => buttonClicked()}>
-          Search
-        </Button>
-      </form>
+      <Button onClick={() => buttonClicked()}>Search</Button>
+    </form>
   );
 }
 
