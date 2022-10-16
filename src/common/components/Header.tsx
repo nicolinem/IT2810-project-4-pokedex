@@ -7,11 +7,7 @@ type Props = {
   href?: string;
 };
 const Header: React.FC<Props> = ({ children, onClick }) => {
-  return (
-    <div className="bg-skin-primary">
-      <header className="bg-skin-primary">POKEDEX</header>
-    </div>
-  );
+  return <div className="bg-skin-primary text-green-50 text-3xl">POKEDEX</div>;
 };
 
 export default Header;
