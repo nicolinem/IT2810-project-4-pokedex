@@ -1,12 +1,11 @@
-import React from "react";
-import Navbar from "../common/components/Navbar";
+import Header from "../common/components/Header";
 import SearchForm from "../common/components/SearchForm";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header" />
-      <Navbar></Navbar>
+      <Header></Header>
       <SearchForm></SearchForm>
     </div>
   );
