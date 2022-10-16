@@ -1,11 +1,11 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import Navbar from "../Navbar";
+import SearchForm from "../SearchForm";
 
 export default function MainPage() {
   return (
     <>
-      <div>hello</div>
-      <Outlet />
+      <Navbar></Navbar>
+      <SearchForm></SearchForm>
     </>
   )
 }
