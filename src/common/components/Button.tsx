@@ -5,6 +5,7 @@ type Props = {
   onClick?: () => void;
   className?: string;
   href?: string;
+  style?: {};
 };
 const Button: React.FC<Props> = ({
   children,

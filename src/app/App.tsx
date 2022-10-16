@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../common/components/Navbar";
 import SearchForm from "../common/components/SearchForm";
-import TypeChipContainer from "../common/components/TypeChipContainer";
+import TypeButtonContainer from "../common/components/TypeButtonContainer";
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <header className="App-header" />
       <Navbar></Navbar>
       <SearchForm></SearchForm>
-      <TypeChipContainer></TypeChipContainer>
+      <TypeButtonContainer></TypeButtonContainer>
     </div>
   );
 }
