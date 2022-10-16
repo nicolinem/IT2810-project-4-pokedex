@@ -12,8 +12,6 @@ function SearchForm() {
     setRepoNameInput(event.target.value);
   };
 
-  const buttonClicked = () => {};
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //TODO
   };
@@ -27,7 +25,7 @@ function SearchForm() {
             value={pokemonNameNumberInputField}
           />
 
-        <Button onClick={() => buttonClicked()}>
+        <Button>
           Search
         </Button>
       </form>
