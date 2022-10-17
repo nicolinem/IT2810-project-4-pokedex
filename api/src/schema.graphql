@@ -10,3 +10,8 @@ type Pokemon {
 type Type {
   name: String!
 }
+
+type Query {
+  getPokemon: [Pokemon]
+    @cypher(statement: "MATCH (g:Pokemon) RETURN g ORDER BY g.name ASC")
+}
