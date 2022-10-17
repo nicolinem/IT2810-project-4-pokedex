@@ -1,32 +1,42 @@
 import React, { useState } from "react";
 
-import Button from "./button/Button";
-import InputField from "./InputField";
-
 function SearchForm() {
-  const [pokemonNameNumberInputField, setRepoNameInput] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [query, setQuery] = useState("");
 
   const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRepoNameInput(event.target.value);
+    setSearchText(event.target.value);
   };
 
-  const buttonClicked = () => {};
+  //sets the search query when the user press the search button
+  const getSearchResults = () => {
+    setQuery(searchText);
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //TODO
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <InputField
+    <div className="flex items-center justify-center pt-[100px]">
+      <input
+        className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full 
+              w-[600px] h-16 pl-5"
         onChange={onChangeSearchField}
         name="Pokemon name or number"
         placeholder="Enter pokemon name or number"
-        value={pokemonNameNumberInputField}
+        value={searchText}
+        //trenger vi en type={text}
       />
 
-      <Button onClick={() => buttonClicked()}>Search</Button>
-    </form>
+      <button
+        className="bg-[#e36d8f] text-[#FFFFFF] rounded-full 
+              h-16 w-16"
+        onClick={getSearchResults}
+      >
+        Search
+      </button>
+    </div>
   );
 }
 
