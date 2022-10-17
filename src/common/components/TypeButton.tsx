@@ -28,7 +28,6 @@ const TypeButton: React.FC<props> = ({
     } else {
       setStyling("text-black text-sm font-bold rounded-full w-28 h-7 ".concat(color));
     }
-    console.log(!state)
 
   };
 
