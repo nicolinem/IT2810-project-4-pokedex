@@ -1,7 +1,7 @@
+import { gql, useQuery } from "@apollo/client";
+import { Route, Routes } from 'react-router-dom';
 import Login from "../common/components/login/Login";
 import MainPage from "../common/components/mainPage/MainPage";
-import { Route, Routes } from 'react-router-dom';
-import { gql, useQuery } from "@apollo/client";
 
 
 function App() {

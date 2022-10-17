@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "api"]
+  "include": ["src", "api", "tailwind.config.js", "postcss.config.js"]
 }

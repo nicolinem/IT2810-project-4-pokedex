@@ -1,11 +1,11 @@
-import Navbar from "../Navbar";
-import SearchForm from "../SearchForm";
+import Card from "../card/Card";
+import Header from "../Header";
 
 export default function MainPage() {
   return (
     <>
-      <Navbar></Navbar>
-      <SearchForm></SearchForm>
+      <Header></Header>
+      <Card></Card>
     </>
-  )
+  );
 }
