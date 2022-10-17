@@ -12,7 +12,9 @@ const Button: React.FC<Props> = ({
   className
 }) => {
   return (
-    <button onClick={onClick} className={className}>
+    <button 
+      className="border rounded-full border-current h-16 w-16"
+      onClick={onClick}>
       {children}
     </button>
   );
