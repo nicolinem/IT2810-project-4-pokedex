@@ -5,8 +5,14 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import { useSignout } from "../../hooks/useSignOut";
+import { IsLoggedIn } from "../../cache";
 
 export default function Navbar() {
+  const loggedIn = IsLoggedIn();
+
+  const { signout } = useSignout();
+
   return (
     <Box sx={{ justifyContent: "space-between" }}>
       <AppBar position="static" color="secondary" sx={{justifyContent: "space-between"}}>
@@ -26,6 +32,10 @@ export default function Navbar() {
             POKEDEX
           </Typography>
           </Box>
+
+          {loggedIn && 
+        <button onClick={signout}>Sign Out</button>
+      }
           <Box>
 
           </Box>
