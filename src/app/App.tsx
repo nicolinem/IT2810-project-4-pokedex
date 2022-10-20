@@ -8,6 +8,18 @@ function App() {
     query {
       getPokemon {
         name
+        pokemonID
+        attack
+        defence
+        sp_attack
+        sp_defence
+        speed
+        height
+        weight
+        hp
+        imageUrl
+        type1
+        type2
       }
     }
   `;
