@@ -1,5 +1,5 @@
-import Card from "../card/Card";
-import Header from "../Header";
+import Card from "../common/components/card/Card";
+import Header from "../common/components/Header";
 
 export default function MainPage() {
   return (
