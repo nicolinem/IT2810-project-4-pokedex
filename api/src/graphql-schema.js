@@ -7,7 +7,7 @@ import { Login, Signup } from "./resolvers";
  * fallback to schema.graphql if GRAPHQL_SCHEMA environment variable is not set
  */
 
-const resolvers = {
+export const resolvers = {
   Query: {
     Login,
   },
@@ -16,11 +16,7 @@ const resolvers = {
   },
 };
 
-const typeDefs = fs
+export const typeDefs = fs
   .readFileSync(path.join(__dirname, "schema.graphql"))
   .toString("utf-8");
-
-module.exports = {
-  typeDefs,
-  resolvers,
-};
+  
