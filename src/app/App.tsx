@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { gql, useQuery } from "@apollo/client";
 import useProfile from "../hooks/useProfile";
 import Register from "../views/Register";
-import {GET_POKEMON_ID, GET_POKEMON} from "../utils/queries";
+import {GET_POKEMON_ID, GET_POKEMON, GET_POKEMON_NAME} from "../utils/queries";
 
 
 function App() {
@@ -13,9 +13,9 @@ function App() {
 
   
   const PokemonQuery = () => {
-    const { loading, error, data } = useQuery(GET_POKEMON_ID, {
+    const { loading, error, data } = useQuery(GET_POKEMON_NAME, {
       variables: {
-        input: 1
+        input: "bas"
       }
     });
  

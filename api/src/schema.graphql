@@ -32,6 +32,9 @@ type Query {
   getPokemonOnID(input: Int): [Pokemon]
     @cypher(statement: "MATCH (g:Pokemon) WHERE g.pokemonID = $input RETURN g")
 
+  getPokemonOnPrefix(input: String): [Pokemon]
+    @cypher(statement: "MATCH (g:Pokemon) WHERE g.name CONTAINS $input RETURN g")
+
 
 
   Profile: User
