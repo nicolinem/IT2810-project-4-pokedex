@@ -3,9 +3,9 @@ import { sign } from "jsonwebtoken";
 
 const cypher = async (driver, query, params) => {
   const session = driver.session();
-  const q = await session.run(query, params);
+  const result = await session.run(query, params);
   session.close();
-  return q.records;
+  return result.records;
 };
 
 const getJWT = (userId) => sign({ userId }, process.env.JWT_SECRET || "secret");
