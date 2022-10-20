@@ -1,10 +1,17 @@
 type Pokemon {
-  total: Int
-  type2: String!
-  type1: String!
-  name: String!
-  pokemonID: Int
-  HP: Int
+pokemonID: Int
+  name: String
+  height: Int
+  weight: Int
+  speed: Int
+  sp_attack: Int
+  sp_defence: Int
+  attack: Int
+  defence: Int
+  type1: String
+  type2: String
+  hp: Int
+  imageUrl: String
 }
 
 type Type {
@@ -14,4 +21,8 @@ type Type {
 type Query {
   getPokemon: [Pokemon]
     @cypher(statement: "MATCH (g:Pokemon) RETURN g ORDER BY g.name ASC")
+
+
 }
+
+
