@@ -1,11 +1,14 @@
+import React from "react";
 import Card from "../card/Card";
-import Header from "../Header";
+import Header from "../header/Header";
 
-export default function MainPage() {
+const MainPage = () => {
   return (
-    <>
+    <div>
       <Header></Header>
       <Card></Card>
-    </>
+    </div>
   );
-}
+};
+
+export default MainPage;
