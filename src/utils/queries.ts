@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const GET_POKEMON = gql`
+export const GET_POKEMON = gql`
   query {
     getPokemon {
         name
@@ -9,8 +9,8 @@ const GET_POKEMON = gql`
 `;
 
 export const GET_POKEMON_ID = gql`
-  query GET_POKEMON_ID($input: Int) {
-    getPokemonOnID($input: Int) {
+  query ($input: Int) {
+    getPokemonOnID(input: $input) {
         pokemonID
         name
         type1
