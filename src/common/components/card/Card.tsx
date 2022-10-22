@@ -1,7 +1,7 @@
 import React from "react";
 import { getImageUrl } from "../../../api/utils/match.utils";
 import { matchType, Pokemon } from "../../../types/pokemon.utils";
-import TypeButton from "../TypeButton";
+import TypeButton from "../button/TypeButton";
 
 type Props = {
   children?: React.ReactNode;
@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
         height={15}
         width={15}
       />
-      <div className="content-center p-4">
+      <div className="content-center justify-center p-4">
         <p className="mb-2 font-semibold leading-normal text-center uppercase text-transform:">
           {pokemon.name}
         </p>
