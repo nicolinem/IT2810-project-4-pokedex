@@ -26,7 +26,7 @@ const MainPage = () => {
           !loading &&
           !error &&
           data.getPokemon.map((pokemon: Pokemon) => {
-            return <Card pokemonType={data.type1} pokemon={pokemon}></Card>;
+            return <Card pokemon={pokemon}></Card>;
           })}
       </div>
     </div>
