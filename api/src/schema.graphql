@@ -1,5 +1,5 @@
 type Pokemon {
-pokemonID: Int
+  pokemonID: Int
   name: String
   height: Int
   weight: Int
@@ -13,7 +13,6 @@ pokemonID: Int
   hp: Int
   imageUrl: String
 }
-
 type Type {
   name: String!
 }

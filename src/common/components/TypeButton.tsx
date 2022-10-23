@@ -1,43 +1,40 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { PokemonType } from "../../types/types.utils";
 
-type props = {
-
-  label: string;
-  color: string;
+type Props = {
+  type: PokemonType;
 };
 
+const TypeButton: React.FC<Props> = ({ type }) => {
+  const [switchState, setSwitchState] = useState(false);
 
-const TypeButton: React.FC<props> = ({
-  label,
-  color,
-}) => {
-
-  const [switchState, setSwitchState] = useState(false); 
-
-  const [styling, setStyling] = useState("text-black text-sm font-bold rounded-full w-28 h-7 ".concat(color));
+  const [styling, setStyling] = useState(
+    "text-black text-sm font-bold rounded-full w-28 h-7 ".concat(type)
+  );
 
   const handleOnChange = () => {
-
-    
     const state = switchState;
 
     setSwitchState(!state);
-    
-    if (!state) {
-      setStyling("text-black text-sm font-bold rounded-full w-28 h-7 outline-double outline-8 outline-white-500 ".concat(color));
-    } else {
-      setStyling("text-black text-sm font-bold rounded-full w-28 h-7 ".concat(color));
-    }
 
+    if (!state) {
+      setStyling(
+        "text-black text-sm font-bold rounded-full w-28 h-7 outline-double outline-8 outline-white-500 ".concat(
+          type
+        )
+      );
+    } else {
+      setStyling(
+        "text-black text-sm font-bold rounded-full w-28 h-7 ".concat(type)
+      );
+    }
   };
 
-  
   return (
     <button onClick={handleOnChange} className={styling}>
-      {label}
+      {type}
     </button>
-  )
+  );
 };
-
 
 export default TypeButton;

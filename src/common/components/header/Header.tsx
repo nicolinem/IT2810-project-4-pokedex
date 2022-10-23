@@ -1,6 +1,6 @@
 import React from "react";
-import { Accordion } from "./button/Accordion";
-import SearchForm from "./SearchForm";
+import { Accordion } from "../button/Accordion";
+import SearchForm from "../SearchForm";
 
 type Props = {
   children?: React.ReactNode;
