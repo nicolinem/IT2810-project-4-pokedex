@@ -1,17 +1,48 @@
 type Pokemon {
-  total: Int
-  type2: String!
-  type1: String!
-  name: String!
   pokemonID: Int
-  HP: Int
+  name: String
+  height: Int
+  weight: Int
+  speed: Int
+  sp_attack: Int
+  sp_defence: Int
+  attack: Int
+  defence: Int
+  type1: String
+  type2: String
+  hp: Int
+  imageUrl: String
 }
-
 type Type {
   name: String!
+}
+
+type User {
+  _id: String!
+  name: String!
+  email: String!
+  password: String
 }
 
 type Query {
   getPokemon: [Pokemon]
     @cypher(statement: "MATCH (g:Pokemon) RETURN g ORDER BY g.name ASC")
+
+  Profile: User
+    @cypher(
+      statement: """
+      MATCH (u:User) WHERE id(u) = $cypherParams.uid
+      RETURN u
+      """
+    )
+
+  Login(email: String, password: String): String
+}
+type Query {
+  getUser: [User]
+    @cypher(statement: "MATCH (g:User) RETURN g ORDER BY g.name ASC")
+}
+
+type Mutation {
+  Signup(email: String, password: String, name: String): String
 }

@@ -1,9 +1,11 @@
-import { typeDefs } from "./graphql-schema";
+import { typeDefs, resolvers } from "./graphql-schema";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import neo4j from "neo4j-driver";
 import { Neo4jGraphQL } from "@neo4j/graphql";
 import dotenv from "dotenv";
+const auth = require("./auth");
+const cors = require("cors");
 
 // set environment variables from .env
 dotenv.config();
@@ -30,7 +32,7 @@ const driver = neo4j.driver(
  * https://neo4j.com/docs/graphql-manual/current/
  */
 
-const neoSchema = new Neo4jGraphQL({ typeDefs, driver });
+const neoSchema = new Neo4jGraphQL({ typeDefs, driver, resolvers });
 
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema
@@ -49,16 +51,26 @@ const server = new ApolloServer({
 });
 
 // Specify host, port and path for GraphQL endpoint
-const port = process.env.GRAPHQL_SERVER_PORT || 4001;
-const path = process.env.GRAPHQL_SERVER_PATH || "/graphql";
-const host = process.env.GRAPHQL_SERVER_HOST || "0.0.0.0";
+// const port = process.env.GRAPHQL_SERVER_PORT || 4001;
+// const path = process.env.GRAPHQL_SERVER_PATH || "/graphql";
+// const host = process.env.GRAPHQL_SERVER_HOST || "0.0.0.0";
+
+const port = process.env.GRAPHQL_LISTEN_PORT || 4001;
+const path = "/graphql";
 
 /*
  * Optionally, apply Express middleware for authentication, etc
  * This also also allows us to specify a path for the GraphQL endpoint
  */
+
+app.use(cors());
+
+// app.use(express.static(path.join(__dirname, "public")));
+
 server.applyMiddleware({ app, path });
 
-app.listen({ host, port, path }, () => {
-  console.log(`GraphQL server ready at http://${host}:${port}${path}`);
+app.use(auth);
+
+app.listen({ port, path }, () => {
+  console.log(`GraphQL server ready at http://localhost:${port}${path}`);
 });

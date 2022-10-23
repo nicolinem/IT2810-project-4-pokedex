@@ -1,38 +1,47 @@
-import Login from "../common/components/login/Login";
-import MainPage from "../common/components/mainPage/MainPage";
-import { Route, Routes } from 'react-router-dom';
 import { gql, useQuery } from "@apollo/client";
+import { Route, Routes } from "react-router-dom";
+import useProfile from "../hooks/useProfile";
+import MainPage from "../pages/MainPage";
+import Login from "../pages/views/Login";
+import Register from "../pages/views/Register";
 
-
-function App() {
-
-
-  const GET_POKEMON = gql`
+export const GET_POKEMON = gql`
   query {
     getPokemon {
-        name
+      name
+      pokemonID
+      attack
+      defence
+      sp_attack
+      sp_defence
+      speed
+      height
+      weight
+      hp
+      imageUrl
+      type1
+      type2
     }
-}
+  }
 `;
-  
+function App() {
+  const { refetch } = useProfile();
 
-   const PokemonQuery = () => {
-   const { loading, error, data } = useQuery(GET_POKEMON);
- 
+  const PokemonQuery = () => {
+    const { loading, error, data } = useQuery(GET_POKEMON);
+
     if (error) {
       console.log(JSON.stringify(error, null, 2));
     }
-    console.log(data);
- };
+  };
 
   PokemonQuery();
 
-
-  
   return (
     <Routes>
-        <Route path='/' element={<MainPage />}></Route>
-        <Route path='/login' element={<Login />} />
+      <Route path="/" element={<MainPage />}></Route>
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }
