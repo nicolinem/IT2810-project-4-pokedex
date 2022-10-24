@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { GET_POKEMON } from "../app/App";
 import Card from "../common/components/card/Card";
 import SearchForm from "../common/components/SearchForm";
+import Header from "../common/components/header/Header";
 import { Pokemon } from "../types/pokemon.utils";
 
 const MainPage = () => {
@@ -20,17 +21,15 @@ const MainPage = () => {
 
   return (
     <div>
-      {
-      /*<Header></Header>
-      <Card></Card> */
-      <SearchForm></SearchForm>
-      }
-      {data &&
-        !loading &&
-        !error &&
-        data.getPokemon.map((pokemon: Pokemon) => {
-          return <Card pokemonType={data.type1} pokemon={pokemon}></Card>;
-        })}
+      <Header></Header>
+      <div className="grid grid-cols-4 gap-4 py-20 ">
+        {data &&
+          !loading &&
+          !error &&
+          data.getPokemon.map((pokemon: Pokemon) => {
+            return <Card pokemon={pokemon}></Card>;
+          })}
+      </div>
     </div>
   );
 };

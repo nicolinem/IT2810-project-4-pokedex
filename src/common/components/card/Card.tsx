@@ -1,14 +1,13 @@
 import React from "react";
 import { getImageUrl } from "../../../api/utils/match.utils";
-import { Pokemon } from "../../../types/pokemon.utils";
-import { PokemonType } from "../../../types/types.utils";
+import { matchType, Pokemon } from "../../../types/pokemon.utils";
+import TypeButton from "../button/TypeButton";
 
 type Props = {
   children?: React.ReactNode;
   onClick?: () => void;
   className?: string;
   pokemon: Pokemon;
-  pokemonType: PokemonType;
 };
 
 const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
@@ -18,11 +17,17 @@ const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
         className="object-cover w-full max-w-fit "
         src={getImageUrl(pokemon.pokemonID)}
         alt="image"
+        height={15}
+        width={15}
       />
-      <div className="content-center p-4">
-        <p className="mb-2 leading-normal text-center">{pokemon.name}</p>
-        {/* <TypeButton type={pokemonType}></TypeButton>
-        <TypeButton type={pokemonType}></TypeButton> */}
+      <div className="content-center justify-center p-4">
+        <p className="mb-2 font-semibold leading-normal text-center uppercase text-transform:">
+          {pokemon.name}
+        </p>
+        <div className="grid grid-cols-2">
+          <TypeButton type={matchType(pokemon.type1)}></TypeButton>
+          <TypeButton type={matchType(pokemon.type2)}></TypeButton>
+        </div>
       </div>
     </div>
   );
