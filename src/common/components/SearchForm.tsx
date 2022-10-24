@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useQuery } from '@apollo/client';
+import { GET_POKEMON_ID } from "../../utils/queries";
+import { Pokemon } from "../../types/pokemon.utils";
+import { Card } from "@mui/material";
 
 function SearchForm() {
   const [searchText, setSearchText] = useState("");
@@ -6,6 +10,17 @@ function SearchForm() {
 
   const [pokemonName, setPokemonName] = useState("");
   const [pokemonNumber, setPokemonNumber] = useState("");
+
+  //hentet kode
+  //const { data: filterData } = useQuery(GET_POKEMON_FILTER);
+
+  const { loading, error, data, fetchMore } = useQuery(GET_POKEMON_ID, {
+    variables: {
+      name: searchText,
+      //sortDescending: filterData.pokemonFilter.sortDescending,
+      //type: filterData.pokemonFilter.type,
+    },
+  });
 
   const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
   const isLetters = (str: string): boolean => /^[a-zA-Z]+$/.test(str);
@@ -19,13 +34,35 @@ function SearchForm() {
     
     if (isNumeric(searchText)){
       setPokemonNumber(searchText);
+      setQuery(searchText);
     } 
     else if (isLetters(searchText)){
-      setPokemonName(searchText); 
+      setPokemonName(searchText);
+      setQuery(searchText); 
     }
     else{
     //TODO - tilbakemelding til bruker om feil input
     }
+
+      // Returns UI according to status of data
+  const dataResult = () => {
+    if (error) {
+      return (
+        //TODO return alert to user about error
+      );
+    }
+    if (loading) {
+      return ;
+    }
+    if (data) {
+      return data.pokemons?.map((pokemon: Pokemon) => (
+        //<PokemonCard pokemon={pokemon} key={pokemon._id} />
+        <Card></Card>
+      ));
+    }
+    return null;
+  };
+
   };
 
   return (
@@ -42,8 +79,11 @@ function SearchForm() {
         onClick={getSearchResults}>
         Search
       </button>
+
+      
+      
     </div>
   );
 }
 
-export default SearchForm;
+

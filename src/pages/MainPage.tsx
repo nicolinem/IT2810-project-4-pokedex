@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON } from "../app/App";
 import Card from "../common/components/card/Card";
+import SearchForm from "../common/components/SearchForm";
 import { Pokemon } from "../types/pokemon.utils";
 
 const MainPage = () => {
@@ -19,8 +20,11 @@ const MainPage = () => {
 
   return (
     <div>
-      {/* <Header></Header>
-      <Card></Card> */}
+      {
+      /*<Header></Header>
+      <Card></Card> */
+      <SearchForm></SearchForm>
+      }
       {data &&
         !loading &&
         !error &&
