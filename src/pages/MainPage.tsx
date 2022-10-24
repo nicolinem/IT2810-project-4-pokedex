@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON } from "../app/App";
 import Card from "../common/components/card/Card";
-import SearchForm from "../common/components/SearchForm";
+import {SearchForm} from "../common/components/SearchForm";
 import Header from "../common/components/header/Header";
 import { Pokemon } from "../types/pokemon.utils";
 
@@ -22,6 +22,7 @@ const MainPage = () => {
   return (
     <div>
       <Header></Header>
+      <SearchForm></SearchForm>
       <div className="grid grid-cols-4 gap-4 py-20 ">
         {data &&
           !loading &&
