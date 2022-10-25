@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from '@apollo/client';
 import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE, GET_POKEMON } from "../../utils/queries";
 import { Pokemon } from "../../types/pokemon.utils";
+import CircularProgress from '@mui/material/CircularProgress';
 import Card from "./card/Card"
 
 export const SearchForm = () => {
@@ -61,6 +62,7 @@ export const SearchForm = () => {
       }
       if (loading) {
         //TODO return alert to user about loading?
+        return <CircularProgress color="success"></CircularProgress>
       }
       if (data) {
         if (query === GET_POKEMON_ID) {
@@ -89,6 +91,7 @@ export const SearchForm = () => {
         };
 
   return (
+<div className="flex flex-col">
     <div className="flex items-center justify-center pt-[100px]">
       <input
         className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
@@ -102,9 +105,11 @@ export const SearchForm = () => {
         onClick={() => getSearchResults()}>
         Search
       </button>
-    
+      </div>
+    <div className="flex flex-wrap justify-center">
       {getDataResult()}
-      
+      </div>
+    
     </div>
   );
   }
