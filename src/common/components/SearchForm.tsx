@@ -9,18 +9,6 @@ export const SearchForm = () => {
   const [searchText, setSearchText] = useState("");
   const [query, setQuery] = useState(GET_POKEMON);
   const [variables, setVariables] = useState({});
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-  
-
-  const queryName = {
-    GET_POKEMON_ID: "getPokemonOnID",
-
-  }
-
-  //hentet kode
-  //const { data: filterData } = useQuery(GET_POKEMON_FILTER);
-
-  
 
   //TODO: skriv en funksjon for å hente de aktiverte typene
   const typesActive: String[] = [];
@@ -34,25 +22,18 @@ export const SearchForm = () => {
 
   const { loading, error, data, fetchMore } = useQuery(query, {
     variables: variables
-      
-      //sortDescending: filterData.pokemonFilter.sortDescending,
-      //type: filterData.pokemonFilter.type,
 ,
   });
-  /*const initialPokemons: Pokemon[] = [];
-  data.getPokemon.forEach((pokemon: Pokemon) => initialPokemons.push(pokemon)); */
-
-  
 
   const getSearchResults = () => {
     //TODO set search query when the user press the search button
     
     if (isNumeric(searchText)){
       if (typesActive.length > 0) {
-        setVariables({input: searchText, types: typesActive});
+        setVariables({input: Number(searchText), types: typesActive});
         setQuery(GET_POKEMON_ID_TYPE);
       } else {
-        setVariables({input: searchText});
+        setVariables({input: Number(searchText)});
         setQuery(GET_POKEMON_ID);
       }
       
@@ -79,28 +60,33 @@ export const SearchForm = () => {
         ;
       }
       if (loading) {
-        
+        //TODO return alert to user about loading?
       }
       if (data) {
-        return data.getPokemon?.map((pokemon: Pokemon) => (
+        if (query === GET_POKEMON_ID) {
+          return (data.getPokemonOnID?.map((pokemon: Pokemon) => (
             <Card pokemon={pokemon}></Card>
-          )
-        );}
-        //setPokemons(data.pokemons?.map((pokemon: Pokemon) => (
-          //<PokemonCard pokemon={pokemon} key={pokemon._id} />
-        console.log(data.getPokemonOnName)
-        //);));
-        var pokemons: Pokemon[] = [];
-        data.getPokemonOnName?.map((pokemon: Pokemon) => pokemons.push(pokemon));
-        console.log(pokemons)
-        setPokemons(pokemons)
+          ))
+        );
+        } else if (query === GET_POKEMON_ID_TYPE) {
+          return (data.getPokemonOnIDAndType?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          ))
+        );
+        } else if (query === GET_POKEMON_NAME) {
+          return (data.getPokemonOnName?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          ))
+        );
+        } else if (query === GET_POKEMON_NAME_TYPE) {
+          return (data.getPokemonOnNameAndType?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          ))
+        );
+        }
+        }
          
         };
-    
-    
-   
-
-
 
   return (
     <div className="flex items-center justify-center pt-[100px]">
@@ -113,7 +99,7 @@ export const SearchForm = () => {
       />
       <button
         className="bg-[#e36d8f] text-[#FFFFFF] rounded-full h-16 w-16"
-        onClick={getSearchResults}>
+        onClick={() => getSearchResults()}>
         Search
       </button>
     
