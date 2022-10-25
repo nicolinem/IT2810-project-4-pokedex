@@ -109,4 +109,6 @@ export const SearchForm = () => {
   );
   }
 
+export default SearchForm;
+
 
