@@ -1,29 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-  font-family: "Courier New", Courier, monospace;
-}
-
-@layer base {
-  :root {
-    --bg-primary: #41444a;
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #000;
-
-    --text-primary: #000;
-    --text-secondary: #fff;
-    --text-tertiary: #fff;
-    --text-for-details: #000;
-
-    --text-font-base: "Montserrat", sans-serif;
-    --text-font-header: "Montserrat", sans-serif;
-
-    --text-space-base: 0em;
-    --text-space-header: 0.1em;
-
-    --text-size-header: 2.25rem;
-    --text-size-base: 1rem;
-  }
-}
