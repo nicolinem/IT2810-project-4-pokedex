@@ -41,10 +41,10 @@ export const SearchForm = () => {
     } 
     else if (isLetters(searchText)){
       if (typesActive.length > 0) {
-        setVariables({input: searchText, types: typesActive});
+        setVariables({input: searchText.toLowerCase(), types: typesActive});
         setQuery(GET_POKEMON_NAME_TYPE);
       } else {
-        setVariables({input: searchText});
+        setVariables({input: searchText.toLowerCase()});
         setQuery(GET_POKEMON_NAME);
       }
     }
