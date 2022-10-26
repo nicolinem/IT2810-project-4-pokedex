@@ -11,6 +11,9 @@ type Props = {
 };
 
 const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
+  console.log(pokemon.type1, "he");
+  console.log(pokemon.type2);
+
   return (
     <div className="w-full px-10 py-10 border-gray-400 rounded-lg shadow-lg lg:max-w-sm">
       <img
@@ -25,8 +28,14 @@ const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
           {pokemon.name}
         </p>
         <div className="grid grid-cols-2">
-          <TypeButton type={matchType(pokemon.type1)}></TypeButton>
-          <TypeButton type={matchType(pokemon.type2)}></TypeButton>
+          {pokemon.type1 === "normal" && pokemon.type2 === "" ? (
+            <TypeButton type={matchType(pokemon.type1)}></TypeButton>
+          ) : (
+            <>
+              <TypeButton type={matchType(pokemon.type1)} />
+              <TypeButton type={matchType(pokemon.type2)} />
+            </>
+          )}
         </div>
       </div>
     </div>

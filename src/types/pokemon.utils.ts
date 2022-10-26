@@ -109,7 +109,7 @@ export const matchTypeColor = (type: string) => {
     case "dark":
       return "bg-[#705848] hover:bg-[#A29288]";
     case "steel":
-      return "bg-[#B8B8D0] hover:bg[#D1D1E0]";
+      return "bg-[#B8B8D0] hover:bg-[#D1D1E0]";
     case "fairy":
       return "bg-[#EE99AC] hover:bg-[#F4BDC9]";
   }

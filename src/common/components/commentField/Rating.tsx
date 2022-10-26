@@ -6,6 +6,7 @@ type Props = {
   href?: string;
 };
 const Rating: React.FC<Props> = ({ children, onClick }) => {
+  const [rating, setRating] = React.useState();
   return (
     <div className="flex items-center">
       <svg
