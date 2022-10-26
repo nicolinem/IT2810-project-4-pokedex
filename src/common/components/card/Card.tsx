@@ -11,9 +11,6 @@ type Props = {
 };
 
 const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
-  console.log(pokemon.type1, "he");
-  console.log(pokemon.type2);
-
   return (
     <div className="w-full px-10 py-10 border-gray-400 rounded-lg shadow-lg lg:max-w-sm">
       <img
