@@ -36,7 +36,7 @@ export const SearchForm = () => {
       } else {
         setVariables({input: Number(searchText)});
         setQuery(GET_POKEMON_ID);
-      }
+      } 
       
     } 
     else if (isLetters(searchText)){
