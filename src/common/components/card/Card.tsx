@@ -25,8 +25,8 @@ const Card: React.FC<Props> = ({ children, onClick, pokemon }) => {
           {pokemon.name}
         </p>
         <div className="grid grid-cols-2">
-          <TypeButton type={matchType(pokemon.type1)}></TypeButton>
-          <TypeButton type={matchType(pokemon.type2)}></TypeButton>
+          <TypeButton type={matchType(pokemon.type1)} activate={false}></TypeButton>
+          <TypeButton type={matchType(pokemon.type2)} activate={false}></TypeButton>
         </div>
       </div>
     </div>
