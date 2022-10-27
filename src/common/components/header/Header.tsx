@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "../button/Accordion";
-import SearchForm from "../SearchForm";
+import {SearchForm} from "../SearchForm";
 
 type Props = {
   children?: React.ReactNode;
@@ -14,7 +14,6 @@ const Header: React.FC<Props> = ({ children, onClick }) => {
       <header className="text-4xl font-extrabold tracking-widest py-24">
         POKEDEX
       </header>
-      <SearchForm></SearchForm>
       <div className="justify-items-center	">
         <Accordion
           title={"Advanced Search"}

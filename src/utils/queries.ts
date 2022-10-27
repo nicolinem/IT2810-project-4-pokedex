@@ -11,6 +11,7 @@ export const GET_POKEMON = gql`
 export const GET_POKEMON_ID = gql`
   query ($input: Int) {
     getPokemonOnID(input: $input) {
+      pokemonID
       name
       height
       weight
@@ -31,6 +32,7 @@ export const GET_POKEMON_ID = gql`
 export const GET_POKEMON_NAME = gql`
   query ($input: String) {
     getPokemonOnName(input: $input) {
+      pokemonID
       name
       height
       weight
@@ -50,6 +52,7 @@ export const GET_POKEMON_NAME = gql`
 export const GET_POKEMON_NAME_TYPE = gql`
  query ($input: String, $types: [String]) {
   getPokemonOnNameAndType(input: $input, types: $types) {
+    pokemonID
     name
     height
     weight
@@ -68,7 +71,8 @@ export const GET_POKEMON_NAME_TYPE = gql`
  export const GET_POKEMON_ID_TYPE = gql`
   query ($input: Int, $types: [String]) {
     getPokemonOnIDAndType(input: $input, types: $types) {
-      name
+    pokemonID
+    name
     height
     weight
     speed
