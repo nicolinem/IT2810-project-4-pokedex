@@ -5,6 +5,7 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
 import TypeButton from "../common/components/button/TypeButton";
+import Comments from "../common/components/commentField/Comments";
 import { StatChart } from "../common/components/statChart/StatChart";
 import { StyledTab, TabPanel } from "../common/components/tabs/TabPanel";
 import { matchType } from "../types/pokemon.utils";
@@ -80,7 +81,6 @@ export const PokemonPage = () => {
 
         <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
           <div>
-            {" "}
             {getPokemonOnID[0].name.charAt(0).toUpperCase() +
               getPokemonOnID[0].name.slice(1)}
           </div>
@@ -120,7 +120,7 @@ export const PokemonPage = () => {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          Reviews
+          <Comments></Comments>
         </TabPanel>
       </Box>
     </div>

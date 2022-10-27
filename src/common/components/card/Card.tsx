@@ -33,7 +33,7 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
         <p className="mb-2 font-semibold leading-normal text-center uppercase text-transform:">
           {pokemon.name}
         </p>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 tracking-widest">
           {pokemon.type2 === "" ? (
             <TypeButton
               type={matchType(pokemon.type1)}
