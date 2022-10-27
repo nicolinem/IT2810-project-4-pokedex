@@ -86,7 +86,7 @@ export const PokemonPage = () => {
   
   return (
     <div>
-    <div className=" relative bg-[#41444a] text-center h-80 w-full">
+    <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
       <div className="absolute bottom-0 ml-40 w-64 h-64">
          <img
         className="object-cover w-full max-w-fit "
@@ -96,11 +96,11 @@ export const PokemonPage = () => {
       </div>
      
       <header className="absolute bottom-0 mx-auto left-0 right-0 text-4xl font-extrabold tracking-widest py-24">
-        <div> {(getPokemonOnID[0].name).charAt(0).toUpperCase() + (getPokemonOnID[0].name).slice(1)}</div>
-       
-          <TypeButton type={matchType(getPokemonOnID[0].type1)}></TypeButton>
-          <TypeButton type={matchType(getPokemonOnID[0].type2)}></TypeButton>
-     
+        <div> {(getPokemonOnID[0].name).charAt(0).toUpperCase() + (getPokemonOnID[0].name).slice(1)} </div>
+          <div className="flex items-center justify-center gap-4 mt-5">
+              <TypeButton type={matchType(getPokemonOnID[0].type1)} activate={false}></TypeButton>
+              <TypeButton type={matchType(getPokemonOnID[0].type2)} activate={false}></TypeButton>
+          </div>
       </header>
       </div>
       

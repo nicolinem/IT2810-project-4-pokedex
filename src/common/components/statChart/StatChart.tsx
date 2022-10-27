@@ -27,10 +27,10 @@ export const StatChart = (props: Props) => {
     const stats = Object.entries(props.pokemonStats);
 
     return (
-        <div>
+        <div className="grid place-items-center">
         {stats.map<ReactNode>((value: [string, number]) => {
                     return (
-                        <div className="w-1/4 rounded-full my-5 font-poppins">
+                        <div className="w-1/4 rounded-full my-5 font-poppins ">
                             {value[0].toUpperCase()}
                             <BorderLinearProgress variant="determinate"  value={value[1]} />
                         </div>);
