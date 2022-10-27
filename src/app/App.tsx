@@ -4,6 +4,7 @@ import useProfile from "../common/hooks/useProfile";
 import MainPage from "../pages/MainPage";
 import Login from "../pages/views/Login";
 import Register from "../pages/views/Register";
+import {PokemonPage} from "../pages/PokemonPage";
 
 export const GET_POKEMON = gql`
   query {
@@ -42,6 +43,7 @@ function App() {
       <Route path="/" element={<MainPage />}></Route>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/pokemon/:id" element={<PokemonPage />} />
     </Routes>
   );
 }

@@ -77,40 +77,81 @@ export const matchType = (type: string) => {
 export const matchTypeColor = (type: string) => {
   switch (type) {
     case "normal":
-      return "bg-[#A8A878] hover:bg-[#C6C6A9]";
+      return "bg-[#A8A878]";
     case "fire":
-      return "bg-[#F08030] hover:bg-[#F5AC78]";
+      return "bg-[#F08030]";
     case "water":
-      return "bg-[#6890F0] hover:bg-[#9DB7F5]";
+      return "bg-[#6890F0]";
     case "electric":
-      return "bg-[#F8D030] hover:bg-[#FAE078]";
+      return "bg-[#F8D030]";
     case "grass":
-      return "bg-[#78C850] hover:bg-[#A7DB8D]";
+      return "bg-[#78C850]";
     case "ice":
-      return "bg-[#98D8D8] hover:bg-[#BCE6E6]";
+      return "bg-[#98D8D8]";
     case "fighting":
-      return "bg-[#C03028] hover:bg-[#D67873]";
+      return "bg-[#C03028]";
     case "poison":
-      return "bg-[#A040A0]  hover:bg-[#C183C1]";
+      return "bg-[#A040A0]";
     case "ground":
-      return "bg-[#E0C068] hover:bg-[#EBD69D]";
+      return "bg-[#E0C068]";
     case "flying":
-      return "bg-[#A890F0] hover:bg-[#C6B7F5]";
+      return "bg-[#A890F0]";
     case "psychic":
-      return "bg-[#F85888] hover:bg-[#FA92B2]";
+      return "bg-[#F85888]";
     case "bug":
-      return "bg-[#A8B820] hover:bg-[#C6D16E]";
+      return "bg-[#A8B820]";
     case "rock":
-      return "bg-[#B8A038] hover:bg-[#D1C17D]";
+      return "bg-[#B8A038]";
     case "ghost":
-      return "bg-[#705898] hover:bg-[#A292BC]";
+      return "bg-[#705898]";
     case "dragon":
-      return "bg-[#7038F8] hover:bg-[#A27DFA]";
+      return "bg-[#7038F8]";
     case "dark":
-      return "bg-[#705848] hover:bg-[#A29288]";
+      return "bg-[#705848]";
     case "steel":
-      return "bg-[#B8B8D0] hover:bg-[#D1D1E0]";
+      return "bg-[#B8B8D0]";
     case "fairy":
-      return "bg-[#EE99AC] hover:bg-[#F4BDC9]";
+      return "bg-[#EE99AC]";
+  }
+};
+
+export const matchTypeHover = (type: string) => {
+  switch (type) {
+    case "normal":
+      return " hover:bg-[#C6C6A9]";
+    case "fire":
+      return " hover:bg-[#F5AC78]";
+    case "water":
+      return " hover:bg-[#9DB7F5]";
+    case "electric":
+      return " hover:bg-[#FAE078]";
+    case "grass":
+      return " hover:bg-[#A7DB8D]";
+    case "ice":
+      return " hover:bg-[#BCE6E6]";
+    case "fighting":
+      return " hover:bg-[#D67873]";
+    case "poison":
+      return "  hover:bg-[#C183C1]";
+    case "ground":
+      return " hover:bg-[#EBD69D]";
+    case "flying":
+      return " hover:bg-[#C6B7F5]";
+    case "psychic":
+      return " hover:bg-[#FA92B2]";
+    case "bug":
+      return " hover:bg-[#C6D16E]";
+    case "rock":
+      return " hover:bg-[#D1C17D]";
+    case "ghost":
+      return " hover:bg-[#A292BC]";
+    case "dragon":
+      return " hover:bg-[#A27DFA]";
+    case "dark":
+      return " hover:bg-[#A29288]";
+    case "steel":
+      return " hover:bg[#D1D1E0]";
+    case "fairy":
+      return " hover:bg-[#F4BDC9]";
   }
 };
