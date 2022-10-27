@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
-import useProfile from "../hooks/useProfile";
+import useProfile from "../common/hooks/useProfile";
 import MainPage from "../pages/MainPage";
 import Login from "../pages/views/Login";
 import Register from "../pages/views/Register";
