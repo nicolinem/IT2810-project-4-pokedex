@@ -7,7 +7,7 @@ import { getImageUrl } from "../api/utils/match.utils";
 import Comments from "../common/components/commentField/Comments";
 import { StatChart } from "../common/components/statChart/StatChart";
 import { StyledTab, TabPanel } from "../common/components/tabs/TabPanel";
-import { TypeChip } from "../common/components/TypeChip";
+import { TypeChip } from "../common/components/Type";
 import { matchType } from "../types/pokemon.utils";
 import { parsePokemonData } from "../utils/data.utils";
 

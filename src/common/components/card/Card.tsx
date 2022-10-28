@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../../api/utils/match.utils";
 import { matchType, Pokemon } from "../../../types/pokemon.utils";
-import { TypeChip } from "../TypeChip";
+import { TypeChip } from "../Type";
 
 type Props = {
   children?: React.ReactNode;
