@@ -4,16 +4,18 @@ import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME
 import { Pokemon } from "../../types/pokemon.utils";
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from "./card/Card"
+import { Accordion } from "./button/Accordion";
+import { TypeButtonContainer } from "./TypeButtonContainer";
+import Alert from '@mui/material/Alert';
 import Button from "./button/Button";
 
 export const SearchForm = () => {
 
   const [searchText, setSearchText] = useState("");
-  const [query, setQuery] = useState(GET_POKEMON);
+  const [query, setQuery] = useState(GET_POKEMON_NAME_TYPE);
   const [variables, setVariables] = useState({});
+  const [activeTypes, setactiveTypes] = useState<string[]>([]);
 
-  //TODO: skriv en funksjon for å hente de aktiverte typene
-  const typesActive: String[] = [];
 
   const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
   const isLetters = (str: string): boolean => /^[a-zA-Z]+$/.test(str);
@@ -27,12 +29,15 @@ export const SearchForm = () => {
 ,
   });
 
+  const getActiveTypes = (activatedTypes: string[]) => {
+    setactiveTypes(activatedTypes);
+  }
+
   const getSearchResults = () => {
-    //TODO set search query when the user press the search button
     
     if (isNumeric(searchText)){
-      if (typesActive.length > 0) {
-        setVariables({input: Number(searchText), types: typesActive});
+      if (activeTypes.length > 0) {
+        setVariables({input: Number(searchText), types: activeTypes});
         setQuery(GET_POKEMON_ID_TYPE);
       } else {
         setVariables({input: Number(searchText)});
@@ -41,29 +46,25 @@ export const SearchForm = () => {
       
     } 
     else if (isLetters(searchText)){
-      if (typesActive.length > 0) {
-        setVariables({input: searchText.toLowerCase(), types: typesActive});
+      if (activeTypes.length > 0) {
+        setVariables({input: searchText.toLowerCase(), types: activeTypes});
         setQuery(GET_POKEMON_NAME_TYPE);
+     
       } else {
         setVariables({input: searchText.toLowerCase()});
         setQuery(GET_POKEMON_NAME);
       }
     }
-    else{
-    //TODO - tilbakemelding til bruker om feil input
-    }
   };
 
-    // Returns UI according to status of data
     const getDataResult = () => {
       if (error) {
-        return 
-          //TODO return alert to user about error
-        ;
+        return (
+        <Alert severity="error">Something went wrong, please try again!</Alert>
+        );
       }
       if (loading) {
-        //TODO return alert to user about loading?
-        return <CircularProgress color="success"></CircularProgress>
+        return (<CircularProgress color="success"></CircularProgress>);
       }
       if (data) {
         if (query === GET_POKEMON_ID) {
@@ -106,8 +107,14 @@ export const SearchForm = () => {
         Search
       </Button>
       </div>
-    <div className="flex flex-wrap justify-center">
-      {getDataResult()}
+        <div className="justify-items-center	">
+          <Accordion
+            title={"Advanced Search"}
+            content={<TypeButtonContainer getActiveTypes={getActiveTypes}/>}
+          ></Accordion>
+        </div>
+      <div className="flex flex-wrap justify-center bg-[#E0FAFF] m-4">
+        {getDataResult()}
       </div>
     
     </div>

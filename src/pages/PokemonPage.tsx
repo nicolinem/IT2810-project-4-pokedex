@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
-import TypeButton from "../common/components/button/TypeButton";
+import { TypeChip } from "../common/components/TypeChip";
 import { matchType } from "../types/pokemon.utils";
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
@@ -98,8 +98,8 @@ export const PokemonPage = () => {
       <header className="absolute bottom-0 mx-auto left-0 right-0 text-4xl font-extrabold tracking-widest py-24">
         <div> {(getPokemonOnID[0].name).charAt(0).toUpperCase() + (getPokemonOnID[0].name).slice(1)}</div>
        
-          <TypeButton type={matchType(getPokemonOnID[0].type1)}></TypeButton>
-          <TypeButton type={matchType(getPokemonOnID[0].type2)}></TypeButton>
+          <TypeChip type={matchType(getPokemonOnID[0].type1)}></TypeChip>
+          <TypeChip type={matchType(getPokemonOnID[0].type2)}></TypeChip>
      
       </header>
       </div>
