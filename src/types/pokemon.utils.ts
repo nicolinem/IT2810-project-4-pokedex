@@ -155,4 +155,3 @@ export const matchTypeHover = (type: string) => {
       return " hover:bg-[#F4BDC9]";
   }
 };
-

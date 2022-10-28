@@ -1,6 +1,6 @@
 import { gql, useLazyQuery } from "@apollo/client";
 import { useEffect } from "react";
-import { isLoggedInVar } from "../cache";
+import { isLoggedInVar } from "../../cache";
 import useProfile from "./useProfile";
 
 type Credentials = {

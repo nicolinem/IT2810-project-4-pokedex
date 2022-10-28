@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON } from "../app/App";
 import Card from "../common/components/card/Card";
-import {SearchForm} from "../common/components/SearchForm";
 import Header from "../common/components/header/Header";
 import { Pokemon } from "../types/pokemon.utils";
 
