@@ -1,10 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { GET_POKEMON } from "../app/App";
 import Card from "../common/components/card/Card";
-import CommentField from "../common/components/commentField/CommentField";
-import Comments from "../common/components/commentField/Comments";
+import Header from "../common/components/header/Header";
 import { Pokemon } from "../types/pokemon.utils";
-
 const MainPage = () => {
   const PokemonQuery = () => {
     const { loading, error, data } = useQuery(GET_POKEMON);
@@ -21,8 +19,7 @@ const MainPage = () => {
 
   return (
     <div>
-      <Comments></Comments>
-      <CommentField></CommentField>
+      <Header></Header>
       <div className="grid grid-cols-4 gap-4 py-20 ">
         {data &&
           !loading &&
