@@ -3,6 +3,7 @@ import { GET_POKEMON } from "../app/App";
 import Card from "../common/components/card/Card";
 import Header from "../common/components/header/Header";
 import { Pokemon } from "../types/pokemon.utils";
+
 const MainPage = () => {
   const PokemonQuery = () => {
     const { loading, error, data } = useQuery(GET_POKEMON);
