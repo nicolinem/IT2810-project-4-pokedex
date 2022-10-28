@@ -7,6 +7,7 @@ import Card from "./card/Card"
 import { Accordion } from "./button/Accordion";
 import { TypeButtonContainer } from "./TypeButtonContainer";
 import Alert from '@mui/material/Alert';
+import Button from "./button/Button";
 
 export const SearchForm = () => {
 
@@ -93,7 +94,7 @@ export const SearchForm = () => {
 
   return (
 <div className="flex flex-col">
-    <div className="flex items-center justify-center pt-[100px]">
+    <div className="flex items-center justify-center pt-[100px] space-x-4">
       <input
         className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
         onChange={onChangeSearchField}
@@ -101,11 +102,10 @@ export const SearchForm = () => {
         placeholder="Enter pokemon name or number"
         value={searchText}
       />
-      <button
-        className="bg-[#e36d8f] text-[#FFFFFF] rounded-full h-16 w-16"
+      <Button
         onClick={() => getSearchResults()}>
         Search
-      </button>
+      </Button>
       </div>
         <div className="justify-items-center	">
           <Accordion
