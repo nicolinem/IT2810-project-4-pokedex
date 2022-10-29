@@ -22,7 +22,6 @@ const MainPage = () => {
   return (
     <div>
       <Header></Header>
-      <SearchForm></SearchForm>
       <div className="grid grid-cols-4 gap-6 px-32 py-20 ">
         {data &&
           !loading &&

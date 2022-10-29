@@ -87,7 +87,8 @@ export const PokemonPage = () => {
   return (
     <div>
     <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
-      <div className="absolute bottom-0 ml-40 w-64 h-64">
+      <div className="border current absolute bottom-0 ml-64 w-64 h-64
+      ">
          <img
         className="object-cover w-full max-w-fit "
         src={getImageUrl(getPokemonOnID[0].pokemonID)}

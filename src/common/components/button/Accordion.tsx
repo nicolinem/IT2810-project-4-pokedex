@@ -25,9 +25,9 @@ export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
   }
 
   return (
-    <div className="flex flex-col text-center justify-center items-center">
+    <div className="flex flex-col text-center justify-center items-center text-white">
       <button
-        className="flex flex-col text-center py-6 box-border appearance-none cursor-pointer focus:outline-none flex items-center justify-between"
+        className="flex flex-col text-center py-6 box-border appearance-none cursor-pointer focus:outline-none flex items-center justify-between text-white"
         onClick={toggleAccordion}
       >
         <div className="text-center">{title}</div>
@@ -36,6 +36,7 @@ export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
           alt="arrow"
           height="13"
           width="13"
+          color="white"
           className={`${rotate}`}
         ></img>
       </button>
