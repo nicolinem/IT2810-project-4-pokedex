@@ -21,7 +21,7 @@ const MainPage = () => {
   return (
     <div>
       <Header></Header>
-      <div className="grid grid-cols-4 gap-4 py-20 ">
+      <div className="grid grid-cols-4 gap-6 px-32 py-20 ">
         {data &&
           !loading &&
           !error &&

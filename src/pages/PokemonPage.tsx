@@ -70,37 +70,23 @@ export const PokemonPage = () => {
 
   return (
     <div>
-      <div>
-        <div className=" relative bg-[#41444a] text-center h-80 w-full">
-          <div className="absolute bottom-0 w-64 h-64 ml-40">
-            <img
-              className="object-cover w-full max-w-fit "
-              src={getImageUrl(getPokemonOnID[0].pokemonID)}
-              alt="image"
-            />
-          </div>
-
-          <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
-            <div>
-              {getPokemonOnID[0].name.charAt(0).toUpperCase() +
-                getPokemonOnID[0].name.slice(1)}
-            </div>
-
+    <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
+      <div className="absolute bottom-0 ml-64 w-64 h-64
+      ">
+         <img
+        className="object-cover w-full max-w-fit "
+        src={getImageUrl(getPokemonOnID[0].pokemonID)}
+        alt="image"
+      />
+      </div>
+     
+      <header className="absolute bottom-0 mx-auto left-0 right-0 text-4xl font-extrabold tracking-widest py-24">
+        <div> {(getPokemonOnID[0].name).charAt(0).toUpperCase() + (getPokemonOnID[0].name).slice(1)}</div>
+          <div className="flex items-center justify-center gap-4 mt-5">
             <TypeChip type={matchType(getPokemonOnID[0].type1)}></TypeChip>
             <TypeChip type={matchType(getPokemonOnID[0].type2)}></TypeChip>
-          </header>
-        </div>
-
-        <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
-          <div>
-            {" "}
-            {getPokemonOnID[0].name.charAt(0).toUpperCase() +
-              getPokemonOnID[0].name.slice(1)}
           </div>
-
-          <TypeChip type={matchType(getPokemonOnID[0].type1)}></TypeChip>
-          <TypeChip type={matchType(getPokemonOnID[0].type2)}></TypeChip>
-        </header>
+      </header>
       </div>
 
       <Box sx={{ width: "100%" }}>
