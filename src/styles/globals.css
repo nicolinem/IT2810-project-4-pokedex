@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "CouriMenloer New", Courier, monospace;
+  font-family: "Courier", Courier, monospace;
 }
 
 @layer base {

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../../api/utils/match.utils";
 import { matchType, Pokemon } from "../../../types/pokemon.utils";
-import {TypeChip} from "../TypeChip";
+import { TypeChip } from "../Type";
 
 type Props = {
   children?: React.ReactNode;
@@ -10,18 +10,18 @@ type Props = {
   pokemon: Pokemon;
 };
 
-
-
 const Card: React.FC<Props> = ({ children, pokemon }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-  navigate("/pokemon/" + pokemon.pokemonID);
-}
-
+    navigate("/pokemon/" + pokemon.pokemonID);
+  };
 
   return (
-    <div onClick={ handleClick} className="w-full px-10 py-10 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer">
+    <div
+      onClick={handleClick}
+      className="w-full px-10 py-10 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer"
+    >
       <img
         className="object-cover w-full max-w-fit "
         src={getImageUrl(pokemon.pokemonID)}
@@ -33,14 +33,19 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
         <p className="mb-2 font-semibold leading-normal text-center uppercase text-transform:">
           {pokemon.name}
         </p>
-        <div className="grid grid-cols-2">
-          <TypeChip type={matchType(pokemon.type1)} ></TypeChip>
-          <TypeChip type={matchType(pokemon.type2)} ></TypeChip>
+        <div className="grid grid-cols-2 tracking-widest">
+          {pokemon.type2 === "" ? (
+            <TypeChip type={matchType(pokemon.type1)}></TypeChip>
+          ) : (
+            <>
+              <TypeChip type={matchType(pokemon.type1)} />
+              <TypeChip type={matchType(pokemon.type2)} />
+            </>
+          )}
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
 export default Card;
-

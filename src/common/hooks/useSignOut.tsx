@@ -1,5 +1,5 @@
 import { useApolloClient } from "@apollo/client";
-import { isLoggedInVar } from "../cache";
+import { isLoggedInVar } from "../../cache";
 import useProfile from "./useProfile";
 
 export function useSignout() {
