@@ -9,14 +9,12 @@ const LoginButton = () => {
     
     return (
         <>
-            <div className="m-5 right-0">
-                <Button onClick={() => setShowModal(true)}> Sign in</Button>
-            </div>
+                <Button buttonType="primary"  onClick={() => setShowModal(true)}> Sign in</Button>
 
             {showModal ? ( 
                 login ? (
-                    <LoginPage onExit={() => setShowModal(false)} onSignUp={() => { console.log("signID"); setLogin(false)}}></LoginPage>) :
-                    <Register onExit={() => setShowModal(false)} onLogin={() => { console.log("signID"); setLogin(true)}}></Register>
+                    <LoginPage onExit={() => setShowModal(false)} onSignUp={() => {  setLogin(false)}}></LoginPage>) :
+                    <Register onExit={() => { setShowModal(false); setLogin(true) }} onLogin={() => {setLogin(true)}}></Register>
             ) : null}
             
             </>
