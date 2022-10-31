@@ -11,7 +11,7 @@ import { NewReview } from "../common/components/NewReview";
 import Reviews from "../common/components/Reviews";
 import { StatChart } from "../common/components/statChart/StatChart";
 import { StyledTab, TabPanel } from "../common/components/tabs/TabPanel";
-import { TypeChip } from "../common/components/Type";
+import { Type } from "../common/components/Type";
 import useReviews from "../common/hooks/useReviews";
 import { useSignout } from "../common/hooks/useSignOut";
 import { matchType } from "../types/pokemon.utils";
@@ -25,7 +25,7 @@ function a11yProps(index: number) {
 }
 
 export const PokemonPage = () => {
-  let auth = isLoggedInVar()
+  let auth = isLoggedInVar();
   const [value, setValue] = React.useState(0);
   const { id } = useParams<{ id: string }>();
   const newID = parseInt(id!);
@@ -100,15 +100,17 @@ export const PokemonPage = () => {
         <div className="z-10 absolute">
 <LoginButton></LoginButton>
         </div>
-     
-      <header className="absolute bottom-0 mx-auto left-0 right-0 text-4xl font-extrabold tracking-widest py-24">
-        <div> {(getPokemonOnID[0].name).charAt(0).toUpperCase() + (getPokemonOnID[0].name).slice(1)}</div>
-          <div className="flex items-center justify-center gap-4 mt-5">
-            <TypeChip type={matchType(getPokemonOnID[0].type1)}></TypeChip>
-            <TypeChip type={matchType(getPokemonOnID[0].type2)}></TypeChip>
+
+        <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest ">
+          <div>
+            {getPokemonOnID[0].name.charAt(0).toUpperCase() +
+              getPokemonOnID[0].name.slice(1)}
           </div>
-          
-      </header>
+          <div className="flex items-center justify-center gap-4 mt-5">
+            <Type type={matchType(getPokemonOnID[0].type1)}></Type>
+            <Type type={matchType(getPokemonOnID[0].type2)}></Type>
+          </div>
+        </header>
       </div>
 
       <Box sx={{ width: "100%" }}>
@@ -139,6 +141,7 @@ export const PokemonPage = () => {
           : <div className="flex flex-col items-center" > Sign in to leave a review </div>}
           
           <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
+          {auth && <NewReview refetchReviews={refetchReviews}></NewReview>}
         </TabPanel>
       </Box>
     </div>

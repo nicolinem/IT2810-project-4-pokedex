@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
 import useProfile from "../common/hooks/useProfile";
-import MainPage from "../pages/MainPage";
 import { PokemonPage } from "../pages/PokemonPage";
+import SearchPage from "../pages/SearchPage";
 
 export const GET_POKEMON = gql`
   query {
@@ -56,12 +56,12 @@ function App() {
   };
 
   PokemonQuery();
-  refetch()
+  refetch();
 
 
   return (
     <Routes>
-      <Route path="/" element={<MainPage />}></Route>
+      <Route path="/" element={<SearchPage />}></Route>
       <Route path="/pokemon/:id" element={<PokemonPage />} />
     </Routes>
   );
