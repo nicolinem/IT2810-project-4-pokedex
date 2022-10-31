@@ -70,10 +70,10 @@ export const PokemonPage = () => {
 
   return (
     <div>
-      <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
-        <div className="absolute bottom-0 w-64 h-64 ml-64 ">
+      <div className="relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
+        <div className="absolute bottom-0 ml-64 xxs:ml-10 xs:ml-16 sm:ml-24 md:ml-32 lg:ml-44 xl:ml-52 2xl:ml-64">
           <img
-            className="object-cover w-full max-w-fit "
+            className="flex items-start lg:h-64 lg:w-64 xxs:h-44 xxs:w-44 xs:h-48 xs:w-48 sm:w-52 sm:h-52 md:h-56 md:w-56"
             src={getImageUrl(getPokemonOnID[0].pokemonID)}
             alt="image"
           />
@@ -81,7 +81,6 @@ export const PokemonPage = () => {
 
         <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
           <div>
-            {" "}
             {getPokemonOnID[0].name.charAt(0).toUpperCase() +
               getPokemonOnID[0].name.slice(1)}
           </div>
