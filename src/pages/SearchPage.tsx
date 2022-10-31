@@ -9,6 +9,7 @@ import { TypeButtonContainer } from "../common/components/TypeButtonContainer";
 import Card from "../common/components/card/Card";
 import { Pokemon } from "../types/pokemon.utils";
 import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE } from "../utils/queries";
+import Footer from "../common/components/Footer";
 
 
 const SearchPage = () => {
@@ -38,8 +39,8 @@ const SearchPage = () => {
     setactiveTypes(activatedTypes);
   }
 
-  const getSearchResults = () => {
-    
+  const getSearchResults = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (isNumeric(searchText)){
       if (activeTypes.length > 0) {
         setVariables({input: Number(searchText), types: activeTypes});
@@ -93,28 +94,26 @@ const SearchPage = () => {
           ))
         );
         }
-        }
-         
-        };
+        } 
+    };
 
   return (
     <div>
     <Header></Header>
     <div className="flex flex-col">
         <div className="bg-[#121A36] flex items-center justify-center pt-[100px] space-x-4 h-[200px]">
-        <form>
-        <input
-            className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
-            onChange={onChangeSearchField}
-            name="Pokemon name or number"
-            placeholder="Enter pokemon name or number"
-            value={searchText}
-        />
-        <Button
-            onClick={() => getSearchResults()}>
-            Search
-        </Button>
-        </form>
+        <form onSubmit={(e) =>getSearchResults(e)}>
+            <input
+                className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
+                onChange={onChangeSearchField}
+                name="Pokemon name or number"
+                placeholder="Enter pokemon name or number"
+                value={searchText}
+                />
+            <Button  type={"submit"}>
+                Search
+            </Button>
+        </form>   
         </div>
             <div className="bg-[#121A36] justify-items-center	">
             <Accordion
@@ -126,6 +125,7 @@ const SearchPage = () => {
             {getDataResult()}
         </div>
     </div>
+    <Footer></Footer>
     </div>
   );
   }

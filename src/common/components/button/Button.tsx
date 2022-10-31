@@ -20,15 +20,18 @@ type Props = {
   onClick?: () => void;
   href?: string;
   buttonType?: ButtonType;
+  type?: "submit" | undefined
+  //submitType?: () => void;
 };
 
 const Button: React.FC<Props> = ({
   children,
   onClick,
   buttonType = "round",
+  type,
 }) => {
   return (
-    <button onClick={onClick} className={`${buttonTypeMapping[buttonType]}`}>
+    <button type={type} onClick={onClick} className={`${buttonTypeMapping[buttonType]}`}>
       {children}
     </button>
   );
