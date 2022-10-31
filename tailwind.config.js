@@ -4,6 +4,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
+      xxs: "50px",
       xs: "475px",
 
       sm: "640px",
@@ -21,6 +22,17 @@ module.exports = {
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
       "3xl": "1600px",
+    },
+    fontSize: {
+      xxs: "0.4rem",
+      xs: "0.6rem",
+      sm: "0.8rem",
+      lg: "1rem",
+      xl: "1.1rem",
+      "2xl": "1.563rem",
+      "3xl": "1.953rem",
+      "4xl": "2.441rem",
+      "5xl": "3.052rem",
     },
     extend: {
       fontFamily: {
