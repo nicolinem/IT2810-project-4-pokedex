@@ -1,6 +1,6 @@
 import TypeButton from "./button/TypeButton";
 import { matchType } from "../../types/pokemon.utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type props = {
     getActiveTypes: (activeTypes: string[]) => void;
@@ -36,17 +36,19 @@ export const TypeButtonContainer: React.FC<props> = ({getActiveTypes}) => {
     const activateButton = (type: string): void => {
         var currentTypes: string[] = activeTypes;
 
-        if (activeTypes.includes(type)) {
+        if (currentTypes.includes(type)) {
             const index = currentTypes.indexOf(type)
             currentTypes.splice(index,1)
             setactiveTypes(currentTypes)
         } else{
-            var currentTypes: string[] = activeTypes;
             currentTypes.push(type);
             setactiveTypes(currentTypes);
         }
+
         getActiveTypes(activeTypes);
-    }
+    };
+
+    
 
     const typeButtons = (types: string[]) => {
         return(
