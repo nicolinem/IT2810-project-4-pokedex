@@ -39,6 +39,9 @@ type Query {
   getPokemon: [Pokemon]
     @cypher(statement: "MATCH (g:Pokemon) RETURN g ORDER BY g.name ASC")
 
+  getPokemonFromID: [Pokemon]
+    @cypher(statement: "MATCH (g:Pokemon) RETURN g ORDER BY g.pokemonID ASC")
+
   getPokemonOnID(input: Int): [Pokemon]
     @cypher(statement: "MATCH (g:Pokemon) WHERE g.pokemonID = $input RETURN g")
 
@@ -49,7 +52,9 @@ type Query {
 
   getPokemonOnNameAndType(input: String, types: [String]): [Pokemon]
     @cypher(
+      
       statement: "MATCH (g:Pokemon) WHERE g.name CONTAINS $input AND (g.type1 IN $types OR g.type2 IN $types) RETURN g"
+    
     )
 
   getPokemonOnIDAndType(input: Int, types: [String]): [Pokemon]

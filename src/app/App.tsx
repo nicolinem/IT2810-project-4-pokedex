@@ -25,6 +25,27 @@ export const GET_POKEMON = gql`
     }
   }
 `;
+
+export const GET_POKEMON_ORDERID = gql`
+  query {
+    getPokemonFromID {
+      name
+      pokemonID
+      attack
+      defence
+      sp_attack
+      sp_defence
+      speed
+      height
+      weight
+      hp
+      imageUrl
+      type1
+      type2
+    }
+  }
+`;
+
 function App() {
   const { refetch } = useProfile();
 
