@@ -90,12 +90,12 @@ export const PokemonPage = () => {
             </div>
         }
         
-      <div className="absolute bottom-0 ml-64 w-64 h-64">
-         <img
-        className="object-cover w-full max-w-fit "
-        src={getImageUrl(getPokemonOnID[0].pokemonID)}
-        alt="image"
-      />
+       <div className="absolute bottom-0 ml-64 xxs:ml-0 xs:ml-14 sm:ml-20 md:ml-28 lg:ml-44 xl:ml-52 2xl:ml-64">
+          <img
+            className="flex items-start lg:h-64 lg:w-64 xxs:h-44 xxs:w-44 xs:h-48 xs:w-48 sm:w-52 sm:h-52 md:h-56 md:w-56"
+            src={getImageUrl(getPokemonOnID[0].pokemonID)}
+            alt="image"
+          />
         </div>
         <div className="z-10 absolute">
 <LoginButton></LoginButton>
@@ -137,11 +137,10 @@ export const PokemonPage = () => {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
+          <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
+
           {auth ? <NewReview refetchReviews={refetchReviews} />
           : <div className="flex flex-col items-center" > Sign in to leave a review </div>}
-          
-          <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
-          {auth && <NewReview refetchReviews={refetchReviews}></NewReview>}
         </TabPanel>
       </Box>
     </div>
