@@ -5,7 +5,6 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
 import { isLoggedInVar } from "../cache";
-// import { IsLoggedIn } from "../cache";
 import { NewReview } from "../common/components/NewReview";
 import Reviews from "../common/components/Reviews";
 import { StatChart } from "../common/components/statChart/StatChart";
