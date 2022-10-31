@@ -58,7 +58,7 @@ function App() {
   };
 
   PokemonQuery();
-  refetch()
+  refetch();
 
   // console.log(localStorage.getItem("token"))
 
