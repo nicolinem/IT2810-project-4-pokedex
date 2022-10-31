@@ -84,7 +84,7 @@ export const PokemonPage = () => {
           />
         </div>
 
-        <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
+        <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest ">
           <div>
             {getPokemonOnID[0].name.charAt(0).toUpperCase() +
               getPokemonOnID[0].name.slice(1)}
