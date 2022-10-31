@@ -119,8 +119,8 @@ export const PokemonPage = () => {
           <StatChart pokemonStats={pokemonStats} type="normal"></StatChart>
         </TabPanel>
 
-        <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
         <TabPanel value={value} index={1}>
+          <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
           {auth && <NewReview refetchReviews={refetchReviews}></NewReview>}
         </TabPanel>
       </Box>
