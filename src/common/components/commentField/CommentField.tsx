@@ -1,4 +1,3 @@
-import CustomizedRating from "./RatingComponent";
 
 const Comments = () => {
   return (

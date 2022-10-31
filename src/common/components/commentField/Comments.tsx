@@ -1,11 +1,6 @@
-import { Modal } from "@mui/material";
-import React from "react";
-import { useReview } from "../../hooks/useReview";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Button from "../button/Button";
-import CommentField from "./CommentField";
-import CustomizedRating, { StyledRating } from "./RatingComponent";
+import  { StyledRating } from "./RatingComponent";
 
 
 type Review = {
