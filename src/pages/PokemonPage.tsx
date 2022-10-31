@@ -4,6 +4,8 @@ import Tabs from "@mui/material/Tabs";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
+import { isLoggedInVar } from "../cache";
+// import { IsLoggedIn } from "../cache";
 import { NewReview } from "../common/components/NewReview";
 import Reviews from "../common/components/Reviews";
 import { StatChart } from "../common/components/statChart/StatChart";
@@ -21,10 +23,11 @@ function a11yProps(index: number) {
 }
 
 export const PokemonPage = () => {
+  let auth = isLoggedInVar()
   const [value, setValue] = React.useState(0);
   const { id } = useParams<{ id: string }>();
   const newID = parseInt(id!);
-  const {reviews, refetchReviews} = useReviews();
+  const { reviews, refetchReviews } = useReviews();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -89,6 +92,7 @@ export const PokemonPage = () => {
             <TypeChip type={matchType(getPokemonOnID[0].type1)}></TypeChip>
             <TypeChip type={matchType(getPokemonOnID[0].type2)}></TypeChip>
           </div>
+          
       </header>
       </div>
 
@@ -116,7 +120,8 @@ export const PokemonPage = () => {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          <NewReview refetchReviews={refetchReviews}></NewReview>
+          {auth && <NewReview refetchReviews={refetchReviews}></NewReview>}
+          
           <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
         </TabPanel>
       </Box>
