@@ -14,7 +14,7 @@ import Footer from "../common/components/Footer";
 const SearchPage = () => {
 
   const [searchText, setSearchText] = useState("");
-  const [query, setQuery] = useState(GET_POKEMON_NAME);
+  const [query, setQuery] = useState(GET_POKEMON);
   const [variables, setVariables] = useState({});
   const [activeTypes, setActiveTypes] = useState<String[]>([]);
 
@@ -23,7 +23,10 @@ const SearchPage = () => {
 
   const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
-    if (event.target.value === "") {
+    if (event.target.value === "" && activeTypes.length > 0) {
+      setVariables({types: activeTypes});
+      setQuery(GET_POKEMON_TYPE);
+    } else if (event.target.value === "") {
       setVariables({});
       setQuery(GET_POKEMON);
     }
