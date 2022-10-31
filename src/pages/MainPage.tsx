@@ -5,18 +5,6 @@ import Header from "../common/components/header/Header";
 import { Pokemon } from "../types/pokemon.utils";
 
 const MainPage = () => {
-  const PokemonQuery = () => {
-    const { loading, error, data } = useQuery(GET_POKEMON_ORDERID);
-
-    if (error) {
-      console.log(JSON.stringify(error, null, 2));
-    }
-    console.log(data);
-
-    return { loading, error, data };
-  };
-
-  const { data, error, loading } = PokemonQuery();
 
   return (
     <div>
