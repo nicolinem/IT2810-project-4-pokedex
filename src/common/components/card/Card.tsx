@@ -30,7 +30,7 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
         width={15}
       />
       <div className="content-center justify-center p-4 mx-auto max-w-fit w-30 h-30">
-        <p className="mb-2 text-sm font-semibold leading-normal text-center uppercase xxs:text-xxs xs:text-xs sm: xl:text-xl lg:text-lg text-transform:">
+        <p className="mb-2 text-sm font-semibold leading-normal tracking-widest text-center uppercase xxs:text-xxs xs:text-xs sm:text-sm xl:text-lg lg:text-sm text-transform:">
           {pokemon.name}
         </p>
         <div className="grid grid-cols-2 tracking-widest max-w-fit">
