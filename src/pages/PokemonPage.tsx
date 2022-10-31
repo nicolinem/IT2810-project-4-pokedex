@@ -5,9 +5,13 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
 import Comments from "../common/components/commentField/Comments";
+import { NewReview } from "../common/components/NewReview";
+import Reviews from "../common/components/Reviews";
 import { StatChart } from "../common/components/statChart/StatChart";
 import { StyledTab, TabPanel } from "../common/components/tabs/TabPanel";
 import { TypeChip } from "../common/components/Type";
+import useReviews from "../common/hooks/useReviews";
+import {useSignout} from "../common/hooks/useSignOut";
 import { matchType } from "../types/pokemon.utils";
 import { parsePokemonData } from "../utils/data.utils";
 
@@ -19,9 +23,11 @@ function a11yProps(index: number) {
 }
 
 export const PokemonPage = () => {
+  const {signout} = useSignout();
   const [value, setValue] = React.useState(0);
   const { id } = useParams<{ id: string }>();
   const newID = parseInt(id!);
+  const {reviews, refetchReviews} = useReviews();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -80,6 +86,7 @@ export const PokemonPage = () => {
             />
           </div>
 
+            <button onClick={signout}>Sign Out</button>
           <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
             <div>
               {getPokemonOnID[0].name.charAt(0).toUpperCase() +
@@ -91,16 +98,7 @@ export const PokemonPage = () => {
           </header>
         </div>
 
-        <header className="absolute bottom-0 left-0 right-0 py-24 mx-auto text-4xl font-extrabold tracking-widest">
-          <div>
-            {" "}
-            {getPokemonOnID[0].name.charAt(0).toUpperCase() +
-              getPokemonOnID[0].name.slice(1)}
-          </div>
-
-          <TypeChip type={matchType(getPokemonOnID[0].type1)}></TypeChip>
-          <TypeChip type={matchType(getPokemonOnID[0].type2)}></TypeChip>
-        </header>
+        
       </div>
 
       <Box sx={{ width: "100%" }}>
@@ -127,7 +125,8 @@ export const PokemonPage = () => {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          <Comments></Comments>
+          <NewReview refetchReviews={refetchReviews}></NewReview>
+          <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
         </TabPanel>
       </Box>
     </div>
