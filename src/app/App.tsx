@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
 import useProfile from "../common/hooks/useProfile";
-import MainPage from "../pages/MainPage";
 import { PokemonPage } from "../pages/PokemonPage";
+import SearchPage from "../pages/SearchPage";
 import LoginPage from "../pages/views/Login";
 import Register from "../pages/views/Register";
 
@@ -64,7 +64,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<MainPage />}></Route>
+      <Route path="/" element={<SearchPage />}></Route>
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/pokemon/:id" element={<PokemonPage />} />
