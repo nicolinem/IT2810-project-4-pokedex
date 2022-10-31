@@ -8,7 +8,6 @@ import { Accordion } from "./button/Accordion";
 import { TypeButtonContainer } from "./TypeButtonContainer";
 import Alert from '@mui/material/Alert';
 import Button from "./button/Button";
-import { type } from "os";
 
 export const SearchForm = () => {
 
@@ -42,14 +41,8 @@ export const SearchForm = () => {
   }
 
   useEffect(() => {
-    console.log("Used effect")
     getSearchResults()
-    console.log(activeTypes)
-    
   }, [activeTypes]);
-
-
-
 
 const getSearchResults = () => {
    
@@ -81,9 +74,6 @@ const getSearchResults = () => {
         setVariables({input: searchText.toLowerCase()});
         setQuery(GET_POKEMON_NAME);
       }}
-      console.log(activeTypes)
-      console.log(query)
-    
     
   };
 
