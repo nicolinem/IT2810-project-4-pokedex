@@ -4,14 +4,12 @@ import Tabs from "@mui/material/Tabs";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
-import Comments from "../common/components/commentField/Comments";
 import { NewReview } from "../common/components/NewReview";
 import Reviews from "../common/components/Reviews";
 import { StatChart } from "../common/components/statChart/StatChart";
 import { StyledTab, TabPanel } from "../common/components/tabs/TabPanel";
 import { TypeChip } from "../common/components/Type";
 import useReviews from "../common/hooks/useReviews";
-import {useSignout} from "../common/hooks/useSignOut";
 import { matchType } from "../types/pokemon.utils";
 import { parsePokemonData } from "../utils/data.utils";
 
