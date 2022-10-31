@@ -2,8 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 
 type User = {
-  _id: number;
-  name: string;
+  _id: number
+  name: string
 };
 
 const USER_QUERY = gql`
@@ -16,22 +16,34 @@ const USER_QUERY = gql`
 `;
 
 export default function useProfile() {
-  const { data, loading, refetch } = useQuery(USER_QUERY);
-  const [profile, setProfile] = useState<User>();
+  const { data, loading, refetch, error } = useQuery(USER_QUERY);
+
+  
+  const [profile, setProfile] = useState<User>({_id: 0, name: "" });
   const [status, setStatus] = useState(0);
 
   useEffect(() => {
+    
+    if (error) {
+      console.log(JSON.stringify(error, null, 2));
+    }
+
     setProfile((p) => {
       if (!localStorage.getItem("token")) {
-        return {};
-      } else if (data?.Profile) return data.Profile;
-      else if (p !== undefined && p._id) {
+        return;
+      } else if (data?.Profile) {
+        return data.Profile
+      }
+      else if (p !== undefined && p.name) {
         return p;
-      } else return {};
+      } else return;
     });
   }, [data]);
 
   useEffect(() => {
+    if (error) {
+      console.log(JSON.stringify(error, null, 2));
+    }
     setStatus(() => {
       if (localStorage.getItem("token")) return 200;
       else if (loading) return 0;

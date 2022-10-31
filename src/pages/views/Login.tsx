@@ -14,22 +14,24 @@ import { useLogin } from "../../common/hooks/useLogin";
 
 const theme = createTheme();
 
-export default function Login() {
-  const { login } = useLogin();
+export default function LoginPage() {
+  const { login, error } = useLogin();
   const navigate = useNavigate();
 
+    if (error) {
+      console.log(JSON.stringify(error, null, 2));
+  }
+
+
+
   type Credentials = {
-    password: string;
-    email: string;
-  };
+  email: string;
+  password: string;
+};
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
 
     const loginCredentials: Credentials = {
       email: data.get("email")!.toString(),
@@ -84,10 +86,6 @@ export default function Login() {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel           //      Har ikke slettet for jeg er usikker på om den kan implementeres, men nice om den kan senere
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             <Button
               type="submit"
               fullWidth

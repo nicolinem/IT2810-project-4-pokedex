@@ -11,7 +11,7 @@ type Credentials = {
 }
 
 const REGISTER_QUERY = gql`
-  mutation Register(
+  mutation (
     $email: String
     $password: String
     $name: String
