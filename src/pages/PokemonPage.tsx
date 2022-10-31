@@ -5,12 +5,15 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import { getImageUrl } from "../api/utils/match.utils";
 import { isLoggedInVar } from "../cache";
+import Button from "../common/components/button/Button";
+import LoginButton from "../common/components/button/LoginButton";
 import { NewReview } from "../common/components/NewReview";
 import Reviews from "../common/components/Reviews";
 import { StatChart } from "../common/components/statChart/StatChart";
 import { StyledTab, TabPanel } from "../common/components/tabs/TabPanel";
 import { TypeChip } from "../common/components/Type";
 import useReviews from "../common/hooks/useReviews";
+import { useSignout } from "../common/hooks/useSignOut";
 import { matchType } from "../types/pokemon.utils";
 import { parsePokemonData } from "../utils/data.utils";
 
@@ -27,6 +30,7 @@ export const PokemonPage = () => {
   const { id } = useParams<{ id: string }>();
   const newID = parseInt(id!);
   const { reviews, refetchReviews } = useReviews();
+  const {signout} = useSignout();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -75,14 +79,26 @@ export const PokemonPage = () => {
 
   return (
     <div>
-    <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
-      <div className="absolute bottom-0 ml-64 w-64 h-64
-      ">
+      <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
+        {
+          !auth ?
+          <div className="absolute right-5 top-5">
+            
+            </div> :
+            <div className="absolute right-5 top-5">
+            <Button onClick={signout}> Sign out </Button>
+            </div>
+        }
+        
+      <div className="absolute bottom-0 ml-64 w-64 h-64">
          <img
         className="object-cover w-full max-w-fit "
         src={getImageUrl(getPokemonOnID[0].pokemonID)}
         alt="image"
       />
+        </div>
+        <div className="z-10 absolute">
+<LoginButton></LoginButton>
         </div>
      
       <header className="absolute bottom-0 mx-auto left-0 right-0 text-4xl font-extrabold tracking-widest py-24">
@@ -119,7 +135,8 @@ export const PokemonPage = () => {
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-          {auth && <NewReview refetchReviews={refetchReviews}></NewReview>}
+          {auth ? <NewReview refetchReviews={refetchReviews} />
+          : <div className="flex flex-col items-center" > Sign in to leave a review </div>}
           
           <Reviews refetchReviews={refetchReviews} reviews={reviews}></Reviews>
         </TabPanel>
