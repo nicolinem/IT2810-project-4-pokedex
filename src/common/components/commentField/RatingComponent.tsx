@@ -1,8 +1,9 @@
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box, Rating, styled } from "@mui/material";
+import { useState } from "react";
 
-const StyledRating = styled(Rating)({
+export const StyledRating = styled(Rating)({
   "& .MuiRating-iconFilled": {
     color: "#ff6d75",
   },
@@ -11,7 +12,13 @@ const StyledRating = styled(Rating)({
   },
 });
 
-export default function CustomizedRating() {
+type Props = {
+    onChange: ((event: React.SyntheticEvent<Element, Event>, value: number | null) => void) | undefined
+}
+
+export default function CustomizedRating({onChange}: Props) {
+
+
   return (
     <Box
       sx={{
@@ -20,10 +27,11 @@ export default function CustomizedRating() {
     >
       <StyledRating
         name="customized-color"
-        defaultValue={2}
+        defaultValue={0}
         getLabelText={(value: number) =>
           `${value} Heart${value !== 1 ? "s" : ""}`
         }
+        onChange={onChange}
         precision={0.5}
         icon={<FavoriteIcon />}
         emptyIcon={<FavoriteBorderIcon />}
