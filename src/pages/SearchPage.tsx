@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { useQuery } from '@apollo/client';
-import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE, GET_POKEMON } from "../../utils/queries";
-import { Pokemon } from "../../types/pokemon.utils";
 import CircularProgress from '@mui/material/CircularProgress';
-import Card from "./card/Card"
-import { Accordion } from "./button/Accordion";
-import { TypeButtonContainer } from "./TypeButtonContainer";
 import Alert from '@mui/material/Alert';
-import Button from "./button/Button";
+import Header from "../common/components/header/Header";
+import Button from "../common/components/button/Button";
+import { Accordion } from "../common/components/button/Accordion";
+import { TypeButtonContainer } from "../common/components/TypeButtonContainer";
+import Card from "../common/components/card/Card";
+import { Pokemon } from "../types/pokemon.utils";
+import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE } from "../utils/queries";
 
-export const SearchForm = () => {
+
+const SearchPage = () => {
 
   const [searchText, setSearchText] = useState("");
-  const [query, setQuery] = useState(GET_POKEMON_NAME_TYPE);
+  const [query, setQuery] = useState(GET_POKEMON_NAME);
   const [variables, setVariables] = useState({});
   const [activeTypes, setactiveTypes] = useState<string[]>([]);
 
@@ -22,6 +24,9 @@ export const SearchForm = () => {
 
   const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
+    if (event.target.value === "") {
+      setQuery(GET_POKEMON_NAME) //skal være GET_POKEMON bare
+    }
   };
 
   const { loading, error, data, fetchMore } = useQuery(query, {
@@ -93,35 +98,36 @@ export const SearchForm = () => {
         };
 
   return (
-<div className="flex flex-col">
-    <div className="flex items-center justify-center pt-[100px] space-x-4">
-      <input
-        className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
-        onChange={onChangeSearchField}
-        name="Pokemon name or number"
-        placeholder="Enter pokemon name or number"
-        value={searchText}
-      />
-      <Button
-        onClick={() => getSearchResults()}>
-        Search
-      </Button>
-      </div>
-        <div className="justify-items-center	">
-          <Accordion
-            title={"Advanced Search"}
-            content={<TypeButtonContainer getActiveTypes={getActiveTypes}/>}
-          ></Accordion>
+    <div>
+    <Header></Header>
+    <div className="flex flex-col">
+        <div className="bg-[#121A36] flex items-center justify-center pt-[100px] space-x-4 h-[200px]">
+        <input
+            className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
+            onChange={onChangeSearchField}
+            name="Pokemon name or number"
+            placeholder="Enter pokemon name or number"
+            value={searchText}
+        />
+        <Button
+            onClick={() => getSearchResults()}>
+            Search
+        </Button>
         </div>
-      <div className="flex flex-wrap justify-center bg-[#E0FAFF] m-4">
-        
-        {getDataResult()}
-      </div>
-    
+            <div className="bg-[#121A36] justify-items-center	">
+            <Accordion
+                title={"Advanced Search"}
+                content={<TypeButtonContainer getActiveTypes={getActiveTypes}/>}
+            ></Accordion>
+            </div>
+        <div className="bg-[#DEDFDF] grid grid-cols-4 gap-6 px-32 py-20 ">
+            {getDataResult()}
+        </div>
+    </div>
     </div>
   );
   }
 
-export default SearchForm;
+export default SearchPage;
 
 
