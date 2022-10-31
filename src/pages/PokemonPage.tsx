@@ -75,7 +75,7 @@ export const PokemonPage = () => {
 
   return (
     <div>
-      <div className="relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
+      <div className="relative bg-[#121A36] text-center h-80 w-full text-gray-50	">
         <div className="absolute bottom-0 ml-64 xxs:ml-0 xs:ml-14 sm:ml-20 md:ml-28 lg:ml-44 xl:ml-52 2xl:ml-64">
           <img
             className="flex items-start lg:h-64 lg:w-64 xxs:h-44 xxs:w-44 xs:h-48 xs:w-48 sm:w-52 sm:h-52 md:h-56 md:w-56"
