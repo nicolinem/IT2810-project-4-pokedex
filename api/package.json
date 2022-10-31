@@ -15,10 +15,11 @@
   "author": "William Lyon",
   "license": "MIT",
   "dependencies": {
-    "@apollo/client": "^3.2.5",
-    "@neo4j/graphql": "^1.0.0",
+    "@apollo/client": "^3.7.1",
+    "@neo4j/graphql": "^1.2.4",
     "apollo-server": "^2.19.2",
     "apollo-server-lambda": "^2.19.0",
+    "auth": "^0.0.9",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "csv-parse": "^4.10.1",
