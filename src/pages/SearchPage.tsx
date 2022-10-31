@@ -102,6 +102,7 @@ const SearchPage = () => {
     <Header></Header>
     <div className="flex flex-col">
         <div className="bg-[#121A36] flex items-center justify-center pt-[100px] space-x-4 h-[200px]">
+        <form>
         <input
             className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
             onChange={onChangeSearchField}
@@ -113,6 +114,7 @@ const SearchPage = () => {
             onClick={() => getSearchResults()}>
             Search
         </Button>
+        </form>
         </div>
             <div className="bg-[#121A36] justify-items-center	">
             <Accordion
