@@ -27,7 +27,7 @@ type Props = {
 const Button: React.FC<Props> = ({
   children,
   onClick,
-  buttonType = "round",
+  buttonType = "secondary",
   type,
 }) => {
   return (

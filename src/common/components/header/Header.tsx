@@ -8,7 +8,7 @@ type Props = {
 };
 const Header: React.FC<Props> = ({ children, onClick }) => {
   return (
-    <div className="bg-[#121A36] text-center h-auto ">
+    <div className="bg-[#121A36] text-center h-44 ">
       <header className="text-4xl font-extrabold text-white tracking-widest py-32">
         POKEDEX
       </header>
