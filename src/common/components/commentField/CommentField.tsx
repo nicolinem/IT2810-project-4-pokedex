@@ -1,4 +1,3 @@
-import CustomizedRating from "./RatingComponent";
 
 const Comments = () => {
   return (
@@ -15,7 +14,6 @@ const Comments = () => {
             </div>
             <div className="flex text-lg font-semibold text-gray-700">
               Rating:
-              <CustomizedRating></CustomizedRating>
             </div>
             <div className="text-lg font-semibold text-gray-700">
               Review:

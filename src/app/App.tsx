@@ -4,7 +4,7 @@ import useProfile from "../common/hooks/useProfile";
 import MainPage from "../pages/MainPage";
 import { PokemonPage } from "../pages/PokemonPage";
 import SearchPage from "../pages/SearchPage";
-import Login from "../pages/views/Login";
+import LoginPage from "../pages/views/Login";
 import Register from "../pages/views/Register";
 
 export const GET_POKEMON = gql`
@@ -26,6 +26,27 @@ export const GET_POKEMON = gql`
     }
   }
 `;
+
+export const GET_POKEMON_ORDERID = gql`
+  query {
+    getPokemonFromID {
+      name
+      pokemonID
+      attack
+      defence
+      sp_attack
+      sp_defence
+      speed
+      height
+      weight
+      hp
+      imageUrl
+      type1
+      type2
+    }
+  }
+`;
+
 function App() {
   const { refetch } = useProfile();
 
@@ -38,12 +59,15 @@ function App() {
   };
 
   PokemonQuery();
+  refetch();
+
+  // console.log(localStorage.getItem("token"))
 
   return (
     <Routes>
       <Route path="/" element={<SearchPage />}></Route>
       <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/pokemon/:id" element={<PokemonPage />} />
     </Routes>
   );
