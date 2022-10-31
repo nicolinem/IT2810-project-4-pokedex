@@ -3,14 +3,15 @@ import { sign } from "jsonwebtoken";
 
 const cypher = async (driver, query, params) => {
   const session = driver.session();
-  const result = await session.run(query, params);
+  const q = await session.run(query, params);
   session.close();
-  return result.records;
+  return q.records;
 };
 
 const getJWT = (userId) => sign({ userId }, process.env.JWT_SECRET || "secret");
 
 export async function Login(obj, { email, password }, { driver }) {
+  console.log("LOGIN");
   const [user] = await cypher(
     driver,
     "MATCH (u:User { email: $email }) RETURN id(u) AS id, u.password AS password",
@@ -24,8 +25,11 @@ export async function Login(obj, { email, password }, { driver }) {
   const token = getJWT(userId);
   return token;
 }
-export async function Signup(obj, { email, password, name }, { driver }) {
-  console.log("LOGIN");
+export async function Signup(
+  obj,
+  { email, password, name, avatarUrl },
+  { driver }
+) {
   const [user] = await cypher(
     driver,
     "MATCH (u:User { email: $email }) RETURN id(u) AS id",
@@ -39,9 +43,10 @@ export async function Signup(obj, { email, password, name }, { driver }) {
   const [newUser] = await cypher(
     driver,
     "CREATE (u:User { email: $email, password: $password, name: $name}) RETURN id(u) AS id",
-    { email, password: encryptedPassword, name }
+    { email, password: encryptedPassword, name, avatarUrl }
   );
   const userId = newUser.get("id").low;
   const token = getJWT(userId);
+  console.log(token);
   return token;
 }

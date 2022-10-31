@@ -9,7 +9,13 @@ const MainPage = () => {
   return (
     <div>
       <Header></Header>
-      <div className="grid grid-cols-4 gap-6 px-32 py-20 ">
+      <div className="grid grid-cols-4 gap-6 px-32 py-20 xxs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {data &&
+          !loading &&
+          !error &&
+          data.getPokemonFromID.map((pokemon: Pokemon) => {
+            return <Card pokemon={pokemon}></Card>;
+          })}
       </div>
     </div>
   );

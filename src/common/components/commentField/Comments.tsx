@@ -1,56 +1,54 @@
-import { Modal } from "@mui/material";
-import React from "react";
-import Button from "../button/Button";
-import CommentField from "./CommentField";
-import CustomizedRating from "./RatingComponent";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import  { StyledRating } from "./RatingComponent";
 
-const onSubmit = () => {};
 
-const Comments = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+type Review = {
+    _id: number
+    content: string
+    score: number
+    date: string
+    user: string
+}
+
+type Props = {
+  refetchReviews: () => void;
+  review: Review
+}
+
+const Comments = (props: Props) => {
+
   return (
-    <div className="form-container">
-      <form>
-        <div className="flex items-center justify-center ">
-          <div className="px-10">
-            <div className="max-w-xl px-10 py-8 transition duration-500 bg-white shadow-lg rounded-2xl hover:shadow-2xl">
-              <div className="mt-4">
-                <h1 className="text-lg font-semibold text-gray-700 cursor-pointer hover:underline">
-                  Product Review
+        <div className="flex items-center justify-center m-5">
+            <div className="max-w-xl w-96 px-10 py-4  bg-white shadow-md rounded-2xl ">
+        <div className="mt-2">
+          <div className="flex justify-between">
+                <h1 className="text-lg font-semibold text-gray-700">
+                  {props.review.user}
                 </h1>
-                <CustomizedRating></CustomizedRating>
+          
+          <StyledRating
+            readOnly
+            name="customized-color"
+            value={props.review.score}
+            icon={<FavoriteIcon />}
+            emptyIcon={<FavoriteBorderIcon />}
+            />
+            </div>
                 <p className="mt-4 text-gray-600 text-md">
-                  But I must explain to you how all this mistaken idea of
-                  denouncing pleasure and praising pain was born and I will give
-                  you a complete account of the system, and expound the actual
-                  teachings of the great explorer of the truth, the
-                  master-builder of human happines.
+                  {props.review.content}
                 </p>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center mt-4 space-x-4">
                     <div className="text-sm font-semibold">
-                      {"Username"}
-                      <span className="font-normal"> 5 minutes ago</span>
+                      {"Posted"}
+                      <span className="font-normal"> {props.review.date}</span>
                     </div>
                   </div>
-                  <Button onClick={handleOpen}>Add review</Button>
-                  <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                  >
-                    <CommentField></CommentField>
-                  </Modal>
                 </div>
               </div>
             </div>
-          </div>
         </div>
-      </form>
-    </div>
   );
 };
 
