@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from '@apollo/client';
-import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE, GET_POKEMON } from "../../utils/queries";
+import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE, GET_POKEMON, GET_POKEMON_TYPE } from "../../utils/queries";
 import { Pokemon } from "../../types/pokemon.utils";
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from "./card/Card"
@@ -8,13 +8,14 @@ import { Accordion } from "./button/Accordion";
 import { TypeButtonContainer } from "./TypeButtonContainer";
 import Alert from '@mui/material/Alert';
 import Button from "./button/Button";
+import { type } from "os";
 
 export const SearchForm = () => {
 
   const [searchText, setSearchText] = useState("");
-  const [query, setQuery] = useState(GET_POKEMON_NAME_TYPE);
+  const [query, setQuery] = useState(GET_POKEMON);
   const [variables, setVariables] = useState({});
-  const [activeTypes, setactiveTypes] = useState<string[]>([]);
+  const [activeTypes, setActiveTypes] = useState<String[]>([]);
 
 
   const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
@@ -22,6 +23,11 @@ export const SearchForm = () => {
 
   const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
+    if (event.target.value === "") {
+      setVariables({});
+      setQuery(GET_POKEMON);
+    }
+    
   };
 
   const { loading, error, data, fetchMore } = useQuery(query, {
@@ -30,12 +36,33 @@ export const SearchForm = () => {
   });
 
   const getActiveTypes = (activatedTypes: string[]) => {
-    setactiveTypes(activatedTypes);
+    const newactivatedTypes: string[] = [...activatedTypes]
+    setActiveTypes(newactivatedTypes);
+    getSearchResults();
   }
 
-  const getSearchResults = () => {
+  useEffect(() => {
+    console.log("Used effect")
+    getSearchResults()
+    console.log(activeTypes)
     
-    if (isNumeric(searchText)){
+  }, [activeTypes]);
+
+
+
+
+const getSearchResults = () => {
+   
+  if (searchText === "" && activeTypes.length > 0) {
+    setVariables({types: activeTypes});
+    setQuery(GET_POKEMON_TYPE);
+
+  } else if (searchText === "") {
+      setVariables({});
+      setQuery(GET_POKEMON);
+    }
+    else if (isNumeric(searchText)){
+
       if (activeTypes.length > 0) {
         setVariables({input: Number(searchText), types: activeTypes});
         setQuery(GET_POKEMON_ID_TYPE);
@@ -43,18 +70,21 @@ export const SearchForm = () => {
         setVariables({input: Number(searchText)});
         setQuery(GET_POKEMON_ID);
       } 
-      
     } 
+
     else if (isLetters(searchText)){
       if (activeTypes.length > 0) {
         setVariables({input: searchText.toLowerCase(), types: activeTypes});
         setQuery(GET_POKEMON_NAME_TYPE);
-     
-      } else {
+        }
+       else {
         setVariables({input: searchText.toLowerCase()});
         setQuery(GET_POKEMON_NAME);
-      }
-    }
+      }}
+      console.log(activeTypes)
+      console.log(query)
+    
+    
   };
 
     const getDataResult = () => {
@@ -87,6 +117,14 @@ export const SearchForm = () => {
             <Card pokemon={pokemon}></Card>
           ))
         );
+        } else if (query === GET_POKEMON) {
+          return (data.getPokemonFromID?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          )));
+        } else if (query === GET_POKEMON_TYPE) {
+          return (data.getPokemonFromType?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          )));
         }
         }
          
