@@ -12,13 +12,24 @@ type Pokemon {
   type2: String
   hp: Int
   imageUrl: String
+  reviews: [Review!]! @relationship(type: "REVIEW", direction: OUT)
 }
+
+type Review {
+  _id: ID!
+  date: String
+  content: String!
+  pokemonID: Int!
+  score: Float
+  user: String
+}
+
 type Type {
   name: String!
 }
 
 type User {
-  _id: String!
+  _id: ID! @id
   name: String!
   email: String!
   password: String
@@ -32,33 +43,56 @@ type Query {
     @cypher(statement: "MATCH (g:Pokemon) WHERE g.pokemonID = $input RETURN g")
 
   getPokemonOnName(input: String): [Pokemon]
-    @cypher(statement: "MATCH (g:Pokemon) WHERE g.name CONTAINS $input RETURN g")
+    @cypher(
+      statement: "MATCH (g:Pokemon) WHERE g.name CONTAINS $input RETURN g"
+    )
 
   getPokemonOnNameAndType(input: String, types: [String]): [Pokemon]
-    @cypher(statement: "MATCH (g:Pokemon) WHERE g.name CONTAINS $input AND (g.type1 IN $types OR g.type2 IN $types) RETURN g")
+    @cypher(
+      statement: "MATCH (g:Pokemon) WHERE g.name CONTAINS $input AND (g.type1 IN $types OR g.type2 IN $types) RETURN g"
+    )
 
   getPokemonOnIDAndType(input: Int, types: [String]): [Pokemon]
-    @cypher(statement: "MATCH (g:Pokemon) WHERE g.pokemonID = $input AND (g.type1 IN $types OR g.type2 IN $types) RETURN g")
-
-
+    @cypher(
+      statement: "MATCH (g:Pokemon) WHERE g.pokemonID = $input AND (g.type1 IN $types OR g.type2 IN $types) RETURN g"
+    )
 
   Profile: User
     @cypher(
       statement: """
       MATCH (u:User) WHERE id(u) = $cypherParams.uid
-      RETURN u
+      RETURN {_id: id(u), name: u.name}
       """
     )
 
-  Login(email: String, password: String): String
-}
-type Query {
+  reviews(pokemonID: Int): [Review]
+    @cypher(
+      statement: """
+      MATCH (g:Pokemon) WHERE g.pokemonID = $pokemonID MATCH (g)-[r:REVIEW]-(c)
+      RETURN c
+      """
+    )
+
   getUser: [User]
     @cypher(statement: "MATCH (g:User) RETURN g ORDER BY g.name ASC")
 }
 
 type Mutation {
   Signup(email: String, password: String, name: String): String
+
+  Login(email: String, password: String): String
+  NewReview(
+    content: String
+    score: Float
+    pokemonID: Int
+    date: String
+    user: String
+  ): Review
+    @cypher(
+      statement: """
+      MATCH (g:Pokemon) WHERE g.pokemonID = $pokemonID
+      CREATE (g)-[:REVIEW]->(p: Review {content: $content, score: $score, date: $date, pokemonID: $pokemonID, user: $user })
+      RETURN {_id: id(p)}
+      """
+    )
 }
-
-
