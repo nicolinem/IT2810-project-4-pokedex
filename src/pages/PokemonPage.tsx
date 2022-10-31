@@ -80,7 +80,7 @@ export const PokemonPage = () => {
 
   return (
     <div>
-      <div className=" relative bg-[#41444a] text-center h-80 w-full text-gray-50	">
+      <div className=" relative bg-[#121A36] text-center h-80 w-full text-gray-50	">
         <div className="absolute left-5 top-5 z-40">
            <Button buttonType="primary"  onClick={() => navigate("/")}> Return </Button>
         </div>
