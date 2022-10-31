@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
   return (
     <div
       onClick={handleClick}
-      className="w-full px-10 py-10 border-gray-400 rounded-lg shadow-lg bg- lg:max-w-sm hover:cursor-pointer"
+      className="w-full px-10 py-10 border-gray-400 rounded-lg shadow-lg max-w-fit lg:max-w-sm hover:cursor-pointer"
     >
       <img
         className="object-cover w-full max-w-fit"
