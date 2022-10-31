@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from '@apollo/client';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
@@ -8,17 +8,15 @@ import { Accordion } from "../common/components/button/Accordion";
 import { TypeButtonContainer } from "../common/components/TypeButtonContainer";
 import Card from "../common/components/card/Card";
 import { Pokemon } from "../types/pokemon.utils";
-import { GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE } from "../utils/queries";
+import { GET_POKEMON, GET_POKEMON_ID, GET_POKEMON_ID_TYPE, GET_POKEMON_NAME, GET_POKEMON_NAME_TYPE, GET_POKEMON_TYPE } from "../utils/queries";
 import Footer from "../common/components/Footer";
-
 
 const SearchPage = () => {
 
   const [searchText, setSearchText] = useState("");
   const [query, setQuery] = useState(GET_POKEMON_NAME);
   const [variables, setVariables] = useState({});
-  const [activeTypes, setactiveTypes] = useState<string[]>([]);
-
+  const [activeTypes, setActiveTypes] = useState<String[]>([]);
 
   const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
   const isLetters = (str: string): boolean => /^[a-zA-Z]+$/.test(str);
@@ -26,45 +24,63 @@ const SearchPage = () => {
   const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
     if (event.target.value === "") {
-      setQuery(GET_POKEMON_NAME) //skal være GET_POKEMON bare
+      setVariables({});
+      setQuery(GET_POKEMON);
     }
   };
 
   const { loading, error, data, fetchMore } = useQuery(query, {
-    variables: variables
-,
+    variables: variables,
   });
 
   const getActiveTypes = (activatedTypes: string[]) => {
-    setactiveTypes(activatedTypes);
+    const newactivatedTypes: string[] = [...activatedTypes]
+    setActiveTypes(newactivatedTypes);
+    getSearchResults();
   }
 
-  const getSearchResults = (event: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    getSearchResults();
+  }, [activeTypes]);
+
+  const handleSubmit =(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (isNumeric(searchText)){
-      if (activeTypes.length > 0) {
-        setVariables({input: Number(searchText), types: activeTypes});
-        setQuery(GET_POKEMON_ID_TYPE);
-      } else {
-        setVariables({input: Number(searchText)});
-        setQuery(GET_POKEMON_ID);
-      } 
-      
-    } 
-    else if (isLetters(searchText)){
-      if (activeTypes.length > 0) {
-        setVariables({input: searchText.toLowerCase(), types: activeTypes});
-        setQuery(GET_POKEMON_NAME_TYPE);
-     
-      } else {
-        setVariables({input: searchText.toLowerCase()});
-        setQuery(GET_POKEMON_NAME);
-      }
-    }
+    getSearchResults();
+  }
+
+  const getSearchResults = () => {
+    if (searchText === "" && activeTypes.length > 0) {
+        setVariables({types: activeTypes});
+        setQuery(GET_POKEMON_TYPE);
+    
+      } else if (searchText === "") {
+          setVariables({});
+          setQuery(GET_POKEMON);
+        }
+        else if (isNumeric(searchText)){
+    
+          if (activeTypes.length > 0) {
+            setVariables({input: Number(searchText), types: activeTypes});
+            setQuery(GET_POKEMON_ID_TYPE);
+          } else {
+            setVariables({input: Number(searchText)});
+            setQuery(GET_POKEMON_ID);
+          } 
+        } 
+    
+        else if (isLetters(searchText)){
+          if (activeTypes.length > 0) {
+            setVariables({input: searchText.toLowerCase(), types: activeTypes});
+            setQuery(GET_POKEMON_NAME_TYPE);
+            }
+           else {
+            setVariables({input: searchText.toLowerCase()});
+            setQuery(GET_POKEMON_NAME);
+          }} 
   };
 
-    const getDataResult = () => {
-      if (error) {
+const getDataResult = () => {
+    if (error) {
         return (
         <Alert severity="error">Something went wrong, please try again!</Alert>
         );
@@ -93,8 +109,16 @@ const SearchPage = () => {
             <Card pokemon={pokemon}></Card>
           ))
         );
+        } else if (query === GET_POKEMON) {
+          return (data.getPokemonFromID?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          )));
+        } else if (query === GET_POKEMON_TYPE) {
+          return (data.getPokemonFromType?.map((pokemon: Pokemon) => (
+            <Card pokemon={pokemon}></Card>
+          )));
         }
-        } 
+        }
     };
 
   return (
@@ -102,7 +126,7 @@ const SearchPage = () => {
     <Header></Header>
     <div className="flex flex-col">
         <div className="bg-[#121A36] flex items-center justify-center pt-[100px] space-x-4 h-[200px]">
-        <form onSubmit={(e) =>getSearchResults(e)}>
+        <form onSubmit={handleSubmit}>
             <input
                 className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
                 onChange={onChangeSearchField}

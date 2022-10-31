@@ -1,6 +1,6 @@
 import TypeButton from "./button/TypeButton";
 import { matchType } from "../../types/pokemon.utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type props = {
     getActiveTypes: (activeTypes: string[]) => void;

@@ -1,8 +1,4 @@
 import React from "react";
-import { Accordion } from "../button/Accordion";
-import InputField from "../InputField";
-import {SearchForm} from "../SearchForm";
-import {TypeButtonContainer} from "../TypeButtonContainer";
 
 type Props = {
   children?: React.ReactNode;

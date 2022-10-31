@@ -2,7 +2,7 @@ import programming from "../../public/assets/programming.png";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="p-4 shadow md:px-6 md:py-8 bg-skin-secondary">
+    <footer className="bg-[#121A36] text-white p-4 shadow md:px-6 md:py-8 bg-skin-secondary">
       <div className="sm:flex sm:items-center sm:justify-between">
         <a className="flex items-center mb-4 sm:mb-0">
           <img src={programming} className="h-8 mr-3" alt="Logo" />

@@ -1,7 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { Route, Routes } from "react-router-dom";
 import useProfile from "../common/hooks/useProfile";
-import MainPage from "../pages/MainPage";
 import { PokemonPage } from "../pages/PokemonPage";
 import SearchPage from "../pages/SearchPage";
 import LoginPage from "../pages/views/Login";
