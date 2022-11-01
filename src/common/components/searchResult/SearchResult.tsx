@@ -7,13 +7,18 @@ interface Props {
     searchText: string;
     activeTypes: String[];
     offset: number;
+    sort: string
 }
 
 
 const SearchResult = (props: Props) => {
 
-      const { loading, error, data, fetchMore } = usePokemonQuery(props.searchText, props.activeTypes, props.offset);
+      const { loading, error, data, fetchMore } = usePokemonQuery(props.searchText, props.activeTypes, props.offset, props.sort);
 
+    console.log(error)
+    if (error) {
+      console.log(JSON.stringify(error, null, 2));
+    }
 
   const handleLoadMore = () => {
     fetchMore({
