@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer snapshot 1`] = `
-<div
-  className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
-/>
-`;
-
 exports[`Header snapshot 1`] = `
 <div
   className="bg-[#121A36] text-center h-44 "
