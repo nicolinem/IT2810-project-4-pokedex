@@ -37,6 +37,7 @@ const Footer: React.FC = () => {
       <hr className="my-6 text-skin-primary sm:mx-auto lg:my-8" />
       <span className="block text-sm sm:text-center text-skin-primary">
         © 2022
+        <p> </p>
         <a href="https://www.ntnu.no/" className="hover:underline">
           Women in Tech NTNU™
         </a>

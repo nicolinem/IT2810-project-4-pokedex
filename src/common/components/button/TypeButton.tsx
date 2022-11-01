@@ -27,8 +27,7 @@ const TypeButton: React.FC<Props> = ({ type, activateButton }) => {
 
     if (!state) {
       setStyling(
-        `text-black text-sm font-bold rounded-full w-24 h-7 outline-double outline-8 outline-white ${matchTypeColor(
-          matchType(type)
+        `text-black text-sm font-bold rounded-full w-24 h-7 outline outline-2 outline-offset-2 outline-white ${matchTypeColor(          matchType(type)
         )} ${matchTypeHover(matchType(type))}`
       );
     } else {
@@ -41,7 +40,7 @@ const TypeButton: React.FC<Props> = ({ type, activateButton }) => {
   };
 
   return (
-    <button onClick={handleOnChange} className={styling}>
+    <button onClick={handleOnChange} className={styling} value={type}>
       {type}
     </button>
   );
