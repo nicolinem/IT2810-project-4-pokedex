@@ -28,7 +28,7 @@ describe("Pokemon cards", () => {
   });
 
   it("Check if pokemon cards are clicable and routing", () => {
-    cy.get("div[id='card']").first().click();
+    cy.get("div[id='card']").first().click(); //first bugger, kanskje finne en annen måte her?
     cy.location().should((loc) => {
       expect(loc.pathname).to.eq("/pokemon/1");
     });
