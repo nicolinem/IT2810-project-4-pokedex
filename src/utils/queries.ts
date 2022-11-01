@@ -3,29 +3,6 @@ import { gql } from '@apollo/client';
 
 
 
-export const GET_POKEMON = gql`
-  query {
-    getPokemonFromID {
-       pokemonID
-      name
-      height
-      weight
-      speed
-      sp_attack
-      sp_defence
-      attack
-      defence
-      type1
-      type2
-      hp
-      imageUrl
-    }
-}
-`;
-
-
-
-
 export const usePokemonQuery = (name: string, types: String[], offset: number = 0) => {
     const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
   const isLetters = (str: string): boolean => /^[a-zA-Z]+$/.test(str);
@@ -52,6 +29,8 @@ export const usePokemonQuery = (name: string, types: String[], offset: number = 
   return { loading, error, data, fetchMore };
 
 }
+
+
 export const POKEMON_WITH_NAME_AND_TYPE = gql`
 query Pokemon($name: String, $types: [String], $offset: Int = 0) {
   pokemon( where: {
@@ -140,7 +119,7 @@ export const POKEMON = gql`
 query Pokemon($offset: Int = 0) {
   pokemon(
   options: {
-    limit: 25,
+    limit: 24,
     skip: $offset
   }) {
      pokemonID
@@ -160,103 +139,3 @@ query Pokemon($offset: Int = 0) {
 }
 `;
 
-
-
-
-export const GET_POKEMON_ID = gql`
-  query ($input: Int) {
-    getPokemonOnID(input: $input) {
-      pokemonID
-      name
-      height
-      weight
-      speed
-      sp_attack
-      sp_defence
-      attack
-      defence
-      type1
-      type2
-      hp
-      imageUrl
-    }
-      
-  }
-`;
-
-export const GET_POKEMON_NAME = gql`
-  query ($input: String) {
-    getPokemonOnName(input: $input) {
-      pokemonID
-      name
-      height
-      weight
-      speed
-      sp_attack
-      sp_defence
-      attack
-      defence
-      type1
-      type2
-      hp
-      imageUrl
-    }
-  }
-`;
-
-export const GET_POKEMON_NAME_TYPE = gql`
- query ($input: String, $types: [String]) {
-  getPokemonOnNameAndType(input: $input, types: $types) {
-    pokemonID
-    name
-    height
-    weight
-    speed
-    sp_attack
-    sp_defence
-    attack
-    defence
-    type1
-    type2
-    hp
-    imageUrl
-  }
- }`;
-
- export const GET_POKEMON_ID_TYPE = gql`
-  query ($input: Int, $types: [String]) {
-    getPokemonOnIDAndType(input: $input, types: $types) {
-    pokemonID
-    name
-    height
-    weight
-    speed
-    sp_attack
-    sp_defence
-    attack
-    defence
-    type1
-    type2
-    hp
-    imageUrl
-    }
-  }`;
-
-  export const GET_POKEMON_TYPE = gql`
-    query ($types: [String]) {
-      getPokemonFromType(types: $types) {
-        pokemonID
-        name
-        height
-        weight
-        speed
-        sp_attack
-        sp_defence
-        attack
-        defence
-        type1
-        type2
-        hp
-        imageUrl
-      }
-    }`;

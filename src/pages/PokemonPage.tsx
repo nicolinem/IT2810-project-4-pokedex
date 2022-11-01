@@ -57,6 +57,7 @@ export const PokemonPage = () => {
     }
   `;
 
+
   const { error, loading, data } = useQuery(GET_POKEMON, {
     variables: { input: newID },
   });
