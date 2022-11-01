@@ -6,20 +6,7 @@ describe("Visit HomePage", () => {
   });
 });
 
-describe("Login and sign up", () => {
-  it("Check sign in", () => {
-    cy.get("button").contains("Sign in").click();
-  });
-  it("Check if user exist", () => {
-    cy.get("div[id='sign']").get('input[id="email"]').type("ble@gmail.com");
-    cy.get("div[id='sign']").get('input[id="password"]').type("password");
-
-    cy.get("div[id='sign']")
-      .get("button")
-      .contains("Sign in...")
-      .click()
-      .should("have.thrown", "Error: user with this email doesn't exist");
-  });
+describe("Login", () => {
   it("If user exist", () => {
     cy.get("button").contains("Sign in").click();
     cy.get("input[id='email']").type("test123@gmail.com");
