@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <HashRouter>
-        <App />
+        <App/>
       </HashRouter>
     </ApolloProvider>
   </React.StrictMode>
