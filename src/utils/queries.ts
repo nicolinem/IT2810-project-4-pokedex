@@ -4,8 +4,6 @@ import { gql } from '@apollo/client';
 
 
 export const usePokemonQuery = (name: string, types: String[], offset: number = 0) => {
-    const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
-  const isLetters = (str: string): boolean => /^[a-zA-Z]+$/.test(str);
 
   let query;
   let variables;
