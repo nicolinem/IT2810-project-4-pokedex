@@ -54,7 +54,7 @@ const SearchPage = () => {
       </div>
       <div className="bg-[#121A36] justify-items-center	">
         <Accordion
-          title={"Advanced Search"}
+          title={"Advanced search"}
           content={<TypeButtonContainer getActiveTypes={getActiveTypes} />}
         ></Accordion>
       </div>

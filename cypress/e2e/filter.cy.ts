@@ -8,7 +8,7 @@ describe("Visit HomePage", () => {
 
 describe("Open advanced search", () => {
   it("Check if advanced search works", () => {
-    cy.get("button").contains("Advanced Search").click();
+    cy.get("button").contains("Advanced search").click();
   });
   it("Check if type works", () => {
     cy.get("button").contains("fire").click();
