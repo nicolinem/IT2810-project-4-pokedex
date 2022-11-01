@@ -150,7 +150,7 @@ export const matchTypeHover = (type: string) => {
     case "dark":
       return " hover:bg-[#A29288]";
     case "steel":
-      return " hover:bg[#D1D1E0]";
+      return " hover:bg-[#D1D1E0]";
     case "fairy":
       return " hover:bg-[#F4BDC9]";
   }
