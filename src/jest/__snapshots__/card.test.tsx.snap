@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Snapshot 1`] = `
+<div
+  className="w-full flex flex-col content-start justify-start items-center px-10 py-4 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer hover:bg-[#b8c1d4]"
+  id="card"
+  onClick={[Function]}
+>
+  <img
+    alt="image of pokemon"
+    className="object-cover w-full max-w-fit"
+    height={15}
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+    width={15}
+  />
+  <div
+    className="flex-col p-4 justify-self-center max-w-fit w-30 h-30"
+  >
+    <p
+      className="mb-2 text-sm font-semibold leading-normal tracking-widest text-center uppercase xxs:text-xxs xs:text-xs sm:text-sm xl:text-lg lg:text-sm text-transform:"
+    >
+      bulbasaur
+    </p>
+    <div
+      className="top-0 grid space-y-2 tracking-widest place-items-center "
+    >
+      <div
+        className="justify-center space-y-2"
+      >
+        <div
+          className="max-w-fit "
+        >
+          <div
+            className="flex justify-around text-black text-sm font-bold md:max-lg:flex rounded-full w-24 h-7 pt-1 xxs:h-4 xs:h-5 sm:h-6 lg:h-7 xxs:w-14 xs:w-16 sm:w-20 lg:w-24 xxs:text-xxs xs:text-xs sm:text-sm lg:text-lg bg-[#78C850]"
+          >
+            grass
+          </div>
+        </div>
+        <div
+          className="max-w-fit "
+        >
+          <div
+            className="flex justify-around text-black text-sm font-bold md:max-lg:flex rounded-full w-24 h-7 pt-1 xxs:h-4 xs:h-5 sm:h-6 lg:h-7 xxs:w-14 xs:w-16 sm:w-20 lg:w-24 xxs:text-xxs xs:text-xs sm:text-sm lg:text-lg bg-[#A040A0]"
+          >
+            poison
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
