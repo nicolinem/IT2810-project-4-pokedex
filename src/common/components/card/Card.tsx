@@ -19,8 +19,9 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
 
   return (
     <div
+      id="card"
       onClick={handleClick}
-      className="w-full justify-center px-10 py-4 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer"
+      className="justify-center w-full px-10 py-4 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer"
     >
       <img
         className="object-cover w-full max-w-fit"
@@ -29,16 +30,16 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
         height={15}
         width={15}
       />
-      <div className="justify-center flex-col p-4 max-w-fit w-30 h-30">
+      <div className="flex-col justify-center p-4 max-w-fit w-30 h-30">
         <p className="mb-2 text-sm font-semibold leading-normal tracking-widest text-center uppercase xxs:text-xxs xs:text-xs sm:text-sm xl:text-lg lg:text-sm text-transform:">
           {pokemon.name}
         </p>
-        <div className="space-y-2 justify-center tracking-widest ">
+        <div className="justify-center space-y-2 tracking-widest ">
           {pokemon.type2 === "" ? (
             <Type type={matchType(pokemon.type1)}></Type>
           ) : (
             <>
-              <div className="space-y-2 justify-center">
+              <div className="justify-center space-y-2">
                 <Type type={matchType(pokemon.type1)} />
                 <Type type={matchType(pokemon.type2)} />
               </div>
