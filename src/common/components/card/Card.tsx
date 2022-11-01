@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../../api/utils/match.utils";
 import { matchType, Pokemon } from "../../../types/pokemon.utils";
-import { Type } from "../Type";
+import { TypeChip } from "../Type";
 
 type Props = {
   children?: React.ReactNode;
@@ -20,28 +20,26 @@ const Card: React.FC<Props> = ({ children, pokemon }) => {
   return (
     <div
       onClick={handleClick}
-      className="w-full px-10 py-4 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer"
+      className="w-full px-10 py-10 bg-white border-gray-400 rounded-lg shadow-lg lg:max-w-sm hover:cursor-pointer"
     >
       <img
-        className="object-cover w-full max-w-fit"
+        className="object-cover w-full max-w-fit "
         src={getImageUrl(pokemon.pokemonID)}
         alt="image"
         height={15}
         width={15}
       />
-      <div className="content-center justify-center p-4 mx-auto max-w-fit w-30 h-30">
-        <p className="mb-2 text-sm font-semibold leading-normal tracking-widest text-center uppercase xxs:text-xxs xs:text-xs sm:text-sm xl:text-lg lg:text-sm text-transform:">
+      <div className="content-center justify-center p-4">
+        <p className="mb-2 font-semibold leading-normal text-center uppercase text-transform:">
           {pokemon.name}
         </p>
-        <div className="grid grid-cols-2 tracking-widest max-w-fit">
+        <div className="grid grid-cols-2 tracking-widest">
           {pokemon.type2 === "" ? (
-            <Type type={matchType(pokemon.type1)}></Type>
+            <TypeChip type={matchType(pokemon.type1)}></TypeChip>
           ) : (
             <>
-              <div className="space-x-0.5 space-y-1">
-                <Type type={matchType(pokemon.type1)} />
-                <Type type={matchType(pokemon.type2)} />
-              </div>
+              <TypeChip type={matchType(pokemon.type1)} />
+              <TypeChip type={matchType(pokemon.type2)} />
             </>
           )}
         </div>

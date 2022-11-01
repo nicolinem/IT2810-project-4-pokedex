@@ -1,31 +1,10 @@
-import { gql, makeVar, useQuery } from '@apollo/client';
 import {
-  ApolloProvider,
   ApolloClient,
-  HttpLink,
-  ApolloLink,
+  gql,
   InMemoryCache,
-} from '@apollo/client';
-
-
-const httpLink = new HttpLink({
-    uri: "http://localhost:4001/graphql",
-});
-
-const authLink = new ApolloLink((operation, forward) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  // return the headers to the context so httpLink can read them
-
-  operation.setContext({
-    headers: {
-      authorization: token ? `Bearer ${token}` : '',
-    },
-  });
-
-  // Call the next link in the middleware chain.
-  return forward(operation);
-});
+  makeVar,
+  useQuery,
+} from "@apollo/client";
 
 export const isLoggedInVar = makeVar<boolean>(!!localStorage.getItem("token"));
 
@@ -61,6 +40,6 @@ export function IsLoggedIn() {
 }
 
 export const client = new ApolloClient({
- link: authLink.concat(httpLink),
+  uri: "http://localhost:4001/graphql",
   cache: cache,
 });

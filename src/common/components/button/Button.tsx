@@ -5,7 +5,7 @@ import { PokemonType } from "../../../types/types.utils";
 const pokemon = PokemonType;
 type ButtonType = "round" | "primary" | "secondary" | "tertiary";
 export const buttonTypeMapping: Record<ButtonType, string> = {
-  round: "rounded-full h-16 w-16 bg-[#d15860] text-white",
+  round: "border rounded-full border-current h-16 w-16",
   primary: `text-white text-sm rounded-full p-2 px-4 hover:bg-gray-600 active:bg-gray-700 focus:outline-none flex-row bg-gray-500 ${matchTypeColor(
     pokemon.toString()
   )}`,
@@ -20,18 +20,15 @@ type Props = {
   onClick?: () => void;
   href?: string;
   buttonType?: ButtonType;
-  type?: "submit" | undefined
-  //submitType?: () => void;
 };
 
 const Button: React.FC<Props> = ({
   children,
   onClick,
-  buttonType = "secondary",
-  type,
+  buttonType = "primary",
 }) => {
   return (
-    <button type={type} onClick={onClick} className={`${buttonTypeMapping[buttonType]}`}>
+    <button onClick={onClick} className={`${buttonTypeMapping[buttonType]}`}>
       {children}
     </button>
   );
