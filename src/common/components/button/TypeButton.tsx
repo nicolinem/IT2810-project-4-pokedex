@@ -40,7 +40,7 @@ const TypeButton: React.FC<Props> = ({ type, activateButton }) => {
   };
 
   return (
-    <button onClick={handleOnChange} className={styling}>
+    <button onClick={handleOnChange} className={styling} value={type}>
       {type}
     </button>
   );
