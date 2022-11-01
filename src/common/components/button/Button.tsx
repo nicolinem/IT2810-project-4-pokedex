@@ -10,7 +10,7 @@ export const buttonTypeMapping: Record<ButtonType, string> = {
     pokemon.toString()
   )}`,
   secondary:
-    "bg-red-800 hover:bg-[#C24F4F] border-red-800 text-[#FFFFFF] font-semibold rounded-full border-4 h-16 w-16",
+    "bg-red-800 hover:bg-[#C24F4F] border-red-800 text-[#FFFFFF] font-semibold rounded-full border-4 xs:w-12 sm:w-12 md:w-14 lg:w-16 xl:w-16 xs:h-12 sm:h-12 md:h-14 lg:h-16 xl:h-16 xs:text-xs sm:text-xs md:text-md lg:text-lg xl:text-lg",
   tertiary:
     "text-black text-sm font-bold rounded-full w-28 h-7 outline-double outline-8 outline-white-500",
 };
