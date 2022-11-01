@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Accordion } from "../common/components/button/Accordion";
 import Button from "../common/components/button/Button";
+import DropDown from "../common/components/button/DropDown";
+import SortByButton from "../common/components/button/DropDown";
 import Footer from "../common/components/Footer";
 import Header from "../common/components/header/Header";
 import SearchResult from "../common/components/searchResult/SearchResult";
@@ -11,11 +13,32 @@ const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
   const [activeTypes, setActiveTypes] = useState<String[]>([]);
   const [offset, setOffset] = useState(0);
+  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+  const [sort, setSort] = useState<string>("ASC");
+  const types = () => {
+    return ["ASC", "DESC"];
+  };
+
+
+   const toggleDropDown = () => {
+    setShowDropDown(!showDropDown);
+   };
+  
+   const dismissHandler = (event: React.FocusEvent<HTMLButtonElement>): void => {
+    if (event.currentTarget === event.target) {
+      setShowDropDown(false);
+    }
+   };
+  
+   const typeSelection = (type: string): void => {
+    setSort(type);
+  };
 
   const { loading, error, data, fetchMore } = usePokemonQuery(
     searchText,
     activeTypes,
-    offset
+    offset,
+    sort
   );
 
   const getActiveTypes = (activatedTypes: string[]) => {
@@ -55,7 +78,26 @@ const SearchPage = () => {
       <div className="bg-[#121A36] justify-items-center	">
         <Accordion
           title={"Advanced search"}
-          content={<TypeButtonContainer getActiveTypes={getActiveTypes} />}
+          content={<div className="my-10"><TypeButtonContainer getActiveTypes={getActiveTypes} />
+            <button
+        className={showDropDown ? "active" : undefined}
+        onClick={(): void => toggleDropDown()}
+        onBlur={(e: React.FocusEvent<HTMLButtonElement>): void =>
+          dismissHandler(e)
+        }
+      >
+        <div className="text-white mt-5 bg-[#475569] hover:bg-[#334155] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{sort ? "Sort by: " + sort : "Sort by..."} </div>
+        {showDropDown && (
+          <DropDown
+            types={types()}
+            showDropDown={false}
+            toggleDropDown={(): void => toggleDropDown()}
+            typeSelection={typeSelection}
+          />
+              )}
+              
+
+      </button></div>}
         ></Accordion>
       </div>
       <div id="cards" className="flex flex-col items-center justify-center">
@@ -63,6 +105,7 @@ const SearchPage = () => {
           searchText={searchText}
           activeTypes={activeTypes}
           offset={offset}
+          sort={sort}
         ></SearchResult>
       </div>
 
