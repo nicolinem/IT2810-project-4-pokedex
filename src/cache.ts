@@ -9,7 +9,7 @@ import {
 
 
 const httpLink = new HttpLink({
-    uri: "http://localhost:4001/graphql",
+    uri: "http://it2810-01.idi.ntnu.no:7687/graphql",
 });
 
 const authLink = new ApolloLink((operation, forward) => {
