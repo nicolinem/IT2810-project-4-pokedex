@@ -128,10 +128,12 @@ const SearchPage = () => {
         <div className="bg-[#121A36] flex items-center justify-center pt-[100px] h-[200px]">
           <form onSubmit={handleSubmit} className="space-x-3">
             <input
-              className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
+              className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full pl-5
+              xs:w-[300px] sm:w-[400px] md:[550px] lg:w-[570px] xl:w-[600px]
+              xs:h-10 sm:h-12 md:h-14 lg:h-16 xl:h-16"
               onChange={onChangeSearchField}
               name="Pokemon name or number"
-              placeholder="Enter pokemon name or number"
+              placeholder="Enter pokemon name or id number"
               value={searchText}
             />
             <Button type={"submit"}>Search</Button>
