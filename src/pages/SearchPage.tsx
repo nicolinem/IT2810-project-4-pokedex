@@ -10,116 +10,30 @@ import Header from "../common/components/header/Header";
 import { TypeButtonContainer } from "../common/components/TypeButtonContainer";
 import { Pokemon } from "../types/pokemon.utils";
 import {
-  GET_POKEMON,
-  GET_POKEMON_ID,
-  GET_POKEMON_ID_TYPE,
-  GET_POKEMON_NAME,
-  GET_POKEMON_NAME_TYPE,
-  GET_POKEMON_TYPE,
+
+  usePokemonQuery,
 } from "../utils/queries";
 
 const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
-  const [query, setQuery] = useState(GET_POKEMON);
-  const [variables, setVariables] = useState({});
   const [activeTypes, setActiveTypes] = useState<String[]>([]);
+  const { loading, error, data, fetchMore } = usePokemonQuery(searchText, activeTypes)
 
-  const isNumeric = (str: string): boolean => !/[^0-9]/.test(str);
-  const isLetters = (str: string): boolean => /^[a-zA-Z]+$/.test(str);
-
-  const onChangeSearchField = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
-    if (event.target.value === "" && activeTypes.length > 0) {
-      setVariables({ types: activeTypes });
-      setQuery(GET_POKEMON_TYPE);
-    } else if (event.target.value === "") {
-      setVariables({});
-      setQuery(GET_POKEMON);
-    }
-  };
-
-  const { loading, error, data, fetchMore } = useQuery(query, {
-    variables: variables,
-  });
 
   const getActiveTypes = (activatedTypes: string[]) => {
     const newactivatedTypes: string[] = [...activatedTypes];
     setActiveTypes(newactivatedTypes);
-    getSearchResults();
   };
 
-  useEffect(() => {
-    getSearchResults();
-  }, [activeTypes]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    getSearchResults();
+    const data = new FormData(event.currentTarget);
+    const input = data.get("input")
+    if (input)
+    { setSearchText(input.toString()); }
   };
 
-  const getSearchResults = () => {
-    if (searchText === "" && activeTypes.length > 0) {
-      setVariables({ types: activeTypes });
-      setQuery(GET_POKEMON_TYPE);
-    } else if (searchText === "") {
-      setVariables({});
-      setQuery(GET_POKEMON);
-    } else if (isNumeric(searchText)) {
-      if (activeTypes.length > 0) {
-        setVariables({ input: Number(searchText), types: activeTypes });
-        setQuery(GET_POKEMON_ID_TYPE);
-      } else {
-        setVariables({ input: Number(searchText) });
-        setQuery(GET_POKEMON_ID);
-      }
-    } else if (isLetters(searchText)) {
-      if (activeTypes.length > 0) {
-        setVariables({ input: searchText.toLowerCase(), types: activeTypes });
-        setQuery(GET_POKEMON_NAME_TYPE);
-      } else {
-        setVariables({ input: searchText.toLowerCase() });
-        setQuery(GET_POKEMON_NAME);
-      }
-    }
-  };
-
-  const getDataResult = () => {
-    if (error) {
-      return (
-        <Alert severity="error">Something went wrong, please try again!</Alert>
-      );
-    }
-    if (loading) {
-      return <CircularProgress color="success"></CircularProgress>;
-    }
-    if (data) {
-      if (query === GET_POKEMON_ID) {
-        return data.getPokemonOnID?.map((pokemon: Pokemon) => (
-          <Card pokemon={pokemon}></Card>
-        ));
-      } else if (query === GET_POKEMON_ID_TYPE) {
-        return data.getPokemonOnIDAndType?.map((pokemon: Pokemon) => (
-          <Card pokemon={pokemon}></Card>
-        ));
-      } else if (query === GET_POKEMON_NAME) {
-        return data.getPokemonOnName?.map((pokemon: Pokemon) => (
-          <Card pokemon={pokemon}></Card>
-        ));
-      } else if (query === GET_POKEMON_NAME_TYPE) {
-        return data.getPokemonOnNameAndType?.map((pokemon: Pokemon) => (
-          <Card pokemon={pokemon}></Card>
-        ));
-      } else if (query === GET_POKEMON) {
-        return data.getPokemonFromID?.map((pokemon: Pokemon) => (
-          <Card pokemon={pokemon}></Card>
-        ));
-      } else if (query === GET_POKEMON_TYPE) {
-        return data.getPokemonFromType?.map((pokemon: Pokemon) => (
-          <Card pokemon={pokemon}></Card>
-        ));
-      }
-    }
-  };
 
   return (
     <div>
@@ -129,10 +43,10 @@ const SearchPage = () => {
           <form onSubmit={handleSubmit} className="space-x-3">
             <input
               className="bg-[#3F4867] text-[#FFFFFF] placeholder-[#FFFFFF] rounded-full w-[600px] h-16 pl-5"
-              onChange={onChangeSearchField}
-              name="Pokemon name or number"
+              // onChange={onChangeSearchField}
               placeholder="Enter pokemon name or number"
-              value={searchText}
+              // value={searchText}
+              name="input" id="input"
             />
             <Button type={"submit"}>Search</Button>
           </form>
@@ -144,7 +58,9 @@ const SearchPage = () => {
           ></Accordion>
         </div>
         <div className="bg-[#DEDFDF] grid grid-cols-4 gap-6 px-32 py-20 xxs:grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {getDataResult()}
+          {data && data.pokemon.map((pokemon: Pokemon) => (
+          <Card pokemon={pokemon}></Card>
+        ))}
         </div>
       </div>
       <Footer></Footer>
