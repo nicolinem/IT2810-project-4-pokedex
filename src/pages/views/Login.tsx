@@ -61,7 +61,7 @@ export default function LoginPage(props: Props) {
             </svg>
             <span className="sr-only">Close modal</span>
           </button>
-          <div className="px-6 py-6 lg:px-8">
+          <div id="sign" className="px-6 py-6 lg:px-8">
             <h1 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
               Sign in to leave reviews
             </h1>
@@ -99,7 +99,7 @@ export default function LoginPage(props: Props) {
                 />
               </div>
               <Button buttonType="primary" type={"submit"}>
-                Sign in
+                Sign in...
               </Button>
             </form>
             <div className="mt-5">
