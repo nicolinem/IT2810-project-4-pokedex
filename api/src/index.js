@@ -6,7 +6,7 @@ import { Neo4jGraphQL } from "@neo4j/graphql";
 import dotenv from "dotenv";
 const auth = require("./auth");
 const cors = require("cors");
-const path = require("path");
+const pathl = require("path");
 
 // set environment variables from .env
 dotenv.config();
@@ -58,8 +58,12 @@ const server = new ApolloServer({
   schema: neoSchema.schema,
 });
 
-const port = process.env.GRAPHQL_LISTEN_PORT || 4001;
+// const port = process.env.GRAPHQL_LISTEN_PORT || 4001;
+// const host = process.env.GRAPHQL_URI || "http://it2810-01.idi.ntnu.no";
+// const path = process.env.GRAPHQL_PATH || "/graphql";
 
+const port = process.env.GRAPHQL_LISTEN_PORT || 4001;
+const path = "/graphql";
 /*
  * Optionally, apply Express middleware for authentication, etc
  * This also also allows us to specify a path for the GraphQL endpoint
@@ -67,12 +71,12 @@ const port = process.env.GRAPHQL_LISTEN_PORT || 4001;
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(pathl.join(__dirname, "public")));
 
 app.use(auth);
 
 server.applyMiddleware({ app });
 
 app.listen({ port, path }, () => {
-  console.log(`GraphQL server ready at http://localhost:${port}/graphql`);
+  console.log(`GraphQL server ready at http://localhost:${port}${path}`);
 });

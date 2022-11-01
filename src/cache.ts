@@ -1,6 +1,5 @@
 import { gql, makeVar, useQuery } from '@apollo/client';
 import {
-  ApolloProvider,
   ApolloClient,
   HttpLink,
   ApolloLink,
@@ -9,8 +8,9 @@ import {
 
 
 const httpLink = new HttpLink({
-    uri: "http://localhost:4001/graphql",
+    uri: "http://it2810-01.idi.ntnu.no:4001/graphql",
 });
+
 
 const authLink = new ApolloLink((operation, forward) => {
   // get the authentication token from local storage if it exists

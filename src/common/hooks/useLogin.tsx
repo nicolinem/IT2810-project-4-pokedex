@@ -1,4 +1,4 @@
-import { gql, useLazyQuery, useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useEffect } from "react";
 import { isLoggedInVar } from "../../cache";
 import useProfile from "./useProfile";
