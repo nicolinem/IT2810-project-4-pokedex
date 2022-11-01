@@ -2,11 +2,24 @@ import { gql } from '@apollo/client';
 
 export const GET_POKEMON = gql`
   query {
-    getPokemon {
-        name
+    getPokemonFromID {
+      pokemonID
+      name
+      height
+      weight
+      speed
+      sp_attack
+      sp_defence
+      attack
+      defence
+      type1
+      type2
+      hp
+      imageUrl
     }
 }
 `;
+
 
 export const GET_POKEMON_ID = gql`
   query ($input: Int) {
@@ -86,3 +99,22 @@ export const GET_POKEMON_NAME_TYPE = gql`
     imageUrl
     }
   }`;
+
+  export const GET_POKEMON_TYPE = gql`
+    query ($types: [String]) {
+      getPokemonFromType(types: $types) {
+        pokemonID
+        name
+        height
+        weight
+        speed
+        sp_attack
+        sp_defence
+        attack
+        defence
+        type1
+        type2
+        hp
+        imageUrl
+      }
+    }`;

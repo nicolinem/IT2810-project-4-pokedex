@@ -1,11 +1,12 @@
-import { typeDefs, resolvers } from "./graphql-schema";
-import { ApolloServer } from "apollo-server-express";
-import express from "express";
+const { typeDefs, resolvers } = require("./graphql-schema");
+const { ApolloServer } = require("apollo-server-express");
+const express = require("express");
 import neo4j from "neo4j-driver";
 import { Neo4jGraphQL } from "@neo4j/graphql";
 import dotenv from "dotenv";
 const auth = require("./auth");
 const cors = require("cors");
+const path = require("path");
 
 // set environment variables from .env
 dotenv.config();
@@ -32,7 +33,7 @@ const driver = neo4j.driver(
  * https://neo4j.com/docs/graphql-manual/current/
  */
 
-const neoSchema = new Neo4jGraphQL({ typeDefs, driver, resolvers });
+const neoSchema = new Neo4jGraphQL({ typeDefs, resolvers });
 
 /*
  * Create a new ApolloServer instance, serving the GraphQL schema
@@ -40,23 +41,24 @@ const neoSchema = new Neo4jGraphQL({ typeDefs, driver, resolvers });
  * instance into the context object so it is available in the
  * generated resolvers to connect to the database.
  */
+
 const server = new ApolloServer({
-  context: {
-    driver,
-    driverConfig: { database: process.env.NEO4J_DATABASE || "neo4j" },
-  },
-  schema: neoSchema.schema,
+  context: ({ req }) => (
+    console.log("ID", req.user.id),
+    {
+      driverConfig: { database: "neo4j" },
+      driver,
+      cypherParams: {
+        uid: req.user.id,
+      },
+    }
+  ),
   introspection: true,
   playground: true,
+  schema: neoSchema.schema,
 });
 
-// Specify host, port and path for GraphQL endpoint
-// const port = process.env.GRAPHQL_SERVER_PORT || 4001;
-// const path = process.env.GRAPHQL_SERVER_PATH || "/graphql";
-// const host = process.env.GRAPHQL_SERVER_HOST || "0.0.0.0";
-
 const port = process.env.GRAPHQL_LISTEN_PORT || 4001;
-const path = "/graphql";
 
 /*
  * Optionally, apply Express middleware for authentication, etc
@@ -65,12 +67,12 @@ const path = "/graphql";
 
 app.use(cors());
 
-// app.use(express.static(path.join(__dirname, "public")));
-
-server.applyMiddleware({ app, path });
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(auth);
 
+server.applyMiddleware({ app });
+
 app.listen({ port, path }, () => {
-  console.log(`GraphQL server ready at http://localhost:${port}${path}`);
+  console.log(`GraphQL server ready at http://localhost:${port}/graphql`);
 });

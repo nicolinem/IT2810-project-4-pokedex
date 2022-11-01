@@ -1,8 +1,9 @@
 import React from "react";
-import { Accordion } from "../button/Accordion";
-import InputField from "../InputField";
-import {SearchForm} from "../SearchForm";
-import {TypeButtonContainer} from "../TypeButtonContainer";
+import { isLoggedInVar } from "../../../cache";
+import { useSignout } from "../../hooks/useSignOut";
+import Button from "../button/Button";
+import LoginButton from "../button/LoginButton";
+
 
 type Props = {
   children?: React.ReactNode;
@@ -11,12 +12,23 @@ type Props = {
   href?: string;
 };
 const Header: React.FC<Props> = ({ children, onClick }) => {
+  let auth = isLoggedInVar();
+  const { signout } = useSignout();
+  
   return (
-    <div className="bg-[#121A36] text-center h-auto ">
-      <header className="text-4xl font-extrabold text-white tracking-widest py-24">
+    <div className="bg-[#121A36] text-center h-44 ">
+      <header className="text-4xl font-extrabold text-white tracking-widest py-32">
         POKEDEX
       </header>
-      <SearchForm></SearchForm>
+      {
+          !auth ?
+          <div className="absolute right-5 top-5 z-40">
+          <LoginButton></LoginButton>
+            </div> :
+            <div className="absolute right-5 top-5 z-10">
+            <Button buttonType="primary"  onClick={signout}> Sign out </Button>
+          </div>
+        }
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import useProfile from './useProfile';
+import { isLoggedInVar } from '../../cache';
 
 
 type Credentials = {
@@ -11,7 +12,7 @@ type Credentials = {
 }
 
 const REGISTER_QUERY = gql`
-  mutation Register(
+  mutation (
     $email: String
     $password: String
     $name: String
@@ -33,6 +34,7 @@ export function useRegister() {
   useEffect(() => {
     if (data?.Signup) {
       localStorage.setItem('token', data.Signup);
+      isLoggedInVar(true);
       refetch();
     }
   }, [data, refetch]);
