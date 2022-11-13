@@ -5,6 +5,7 @@ import {
   ApolloLink,
   InMemoryCache,
 } from '@apollo/client';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const httpLink = new HttpLink({
@@ -12,22 +13,48 @@ const httpLink = new HttpLink({
 });
 
 
+
 const authLink = new ApolloLink((operation, forward) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
+    // const value = await AsyncStorage.getItem('TASKS');
+    
   // return the headers to the context so httpLink can read them
 
-  operation.setContext({
-    headers: {
-      authorization: token ? `Bearer ${token}` : '',
-    },
+    operation.setContext(() => {
+        AsyncStorage.getItem("token").then((token) => {
+            console.log("token", token);
+            return {
+                headers: {
+                    authorization: token ? `Bearer ${token}` : '',
+                }
+            };
+  });
+    
   });
 
   // Call the next link in the middleware chain.
   return forward(operation);
 });
 
-export const isLoggedInVar = makeVar<boolean>(!!localStorage.getItem("token"));
+
+export const isLoggedInVar = makeVar<boolean>(false)
+  
+const _retrieveData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('token');
+    if (value !== null) {
+      console.log("tokenn", value);
+      // We have data!!
+      isLoggedInVar(true);
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+}
+
+
+
 
 export const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {

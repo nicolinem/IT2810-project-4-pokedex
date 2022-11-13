@@ -19,7 +19,7 @@ export enum PokemonType {
   Fairy = "fairy",
 }
 
-export const colorMapping: Record<PokemonType, string> = {
+export const colorMapping: Record<string, string> = {
   normal: "#A8A878",
   fire: "#F08030",
   water: "#6890F0",
@@ -40,23 +40,4 @@ export const colorMapping: Record<PokemonType, string> = {
   fairy: "#EE99AC",
 };
 
-export const colorHoverMapping: Record<PokemonType, string> = {
-  normal: " hover: #C6C6A7",
-  fire: " hover: #F5AC78",
-  water: " hover: #9DB7F5",
-  electric: " hover: #FAE078",
-  grass: " hover:  #A7DB8D",
-  ice: " hover: #BCE6E6",
-  fighting: " hover: #D67873",
-  poison: "  hover: #C183C1",
-  ground: " hover: #EBD69D",
-  flying: " hover: #C6B7F5",
-  psychic: " hover: #FA92B2",
-  bug: " hover: #C6D16E",
-  rock: " hover: #D1C17D",
-  ghost: " hover: #A292BC",
-  dragon: " hover: #A27DFA",
-  dark: " hover:  #A29288",
-  steel: " hover: #D1D1E0",
-  fairy: " hover: #F4BDC9",
-};
+

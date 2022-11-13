@@ -1,25 +1,29 @@
 import { Pokemon } from "../types/pokemon.utils"
 
-export type PokemonStats = {
-    "Speed": number,
-    "Special Attack": number,
-    "Special Defence": number,
-    "Attack": number,
-    "Defence": number,
-    "Hp": number
+// export type PokemonStats = {
+//     "Speed": number,
+//     "Special Attack": number,
+//     "Special Defence": number,
+//     "Attack": number,
+//     "Defence": number,
+//     "Hp": number
+// }
+export type PokemonStat = {
+    name: string, 
+    value: number
 }
 
 
-export const parsePokemonData = (pokemon: Pokemon): PokemonStats  => {
+export const parsePokemonData = (pokemon: Pokemon): PokemonStat[]  => {
     const { speed, sp_attack, sp_defence, attack, defence, hp } = pokemon;
     
-
-    return {
-        "Speed": speed,
-        "Special Attack": sp_attack,
-        "Special Defence": sp_defence,
-        "Attack": attack,
-        "Defence": defence,
-        "Hp": hp
-    }
+    const stats = [{ name: "Speed", value: speed },
+        { name: "Special Attack", value: sp_attack },
+        { name: "Special Defence", value: sp_defence },
+        { name: "Attack", value: attack },
+        { name: "Defence", value: defence },
+        { name: "Hp", value: hp }]
+    
+    return stats
+    
 }

@@ -1,66 +1,33 @@
 {
-  "name": "project-3",
-  "homepage": "/project3",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@apollo/client": "^3.7.0",
-    "@apollo/server": "^4.0.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@headlessui/react": "^1.7.3",
-    "@material-tailwind/react": "^1.2.4",
-    "@mui/icons-material": "^5.10.6",
-    "@mui/material": "^5.10.8",
-    "@mui/styled-engine-sc": "^5.10.6",
-    "@neo4j/graphql": "^3.10.1",
-    "@nivo/bar": "^0.80.0",
-    "@types/node": "^16.11.58",
-    "babel-cli": "^6.26.0",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "graphql": "^16.6.0",
-    "neo4j-driver": "^5.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1",
-    "styled-components": "^5.3.6",
-    "tailwindcss-percentage-width": "^1.0.3",
-    "use-neo4j": "^0.3.13",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "project-4-nicoline",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "@expo/webpack-config": "^0.17.3",
+    "@react-native-async-storage/async-storage": "^1.17.10",
+    "@react-navigation/native": "^6.0.13",
+    "@react-navigation/native-stack": "^6.9.1",
+    "@react-navigation/stack": "^6.3.4",
+    "expo": "~46.0.16",
+    "expo-status-bar": "~1.4.0",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-native": "^0.69.6",
+    "react-native-web": "~0.18.7",
+    "twrnc": "^3.4.1"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "autoprefixer": "^10.4.12",
-    "cypress": "^10.11.0",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.1.8",
-    "typescript": "^4.8.4"
-  }
+    "@babel/core": "^7.12.9",
+    "@types/react": "~18.0.14",
+    "@types/react-native": "~0.69.1",
+    "typescript": "~4.3.5"
+  },
+  "private": true
 }
