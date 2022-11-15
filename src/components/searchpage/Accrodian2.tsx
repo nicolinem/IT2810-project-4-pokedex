@@ -16,17 +16,18 @@ export const Accordion2: React.FC<AccordionProps> = ({ title, content }) => {
   }
 
   return (
+    
     <View style={tw`flex mb-5 w-full flex-col text-center justify-center items-center text-white w-full`}>
-      
-      <View style={[styles.list, !isOpen ? styles.hidden : undefined]}>
-        {content}
-          </View>
-          
-          <TouchableOpacity onPress={toggleOpen} activeOpacity={0.6}>
+        <TouchableOpacity onPress={toggleOpen} activeOpacity={0.6}>
         <Text style={tw`text-white mt-5`}>
           {title}
         </Text>
       </TouchableOpacity>
+      <View style={[styles.list, !isOpen ? styles.hidden : undefined]}>
+        {content}
+          </View>
+          
+        
     </View>
   );
 };
