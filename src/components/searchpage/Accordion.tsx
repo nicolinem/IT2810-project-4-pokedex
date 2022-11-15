@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
-import arrow from "../../../public/assets/arrow.png";
+import { useState } from "react";
+import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import tw from 'twrnc';
-import { Text, TouchableOpacity, View } from "react-native";
 
 interface AccordionProps {
   title: React.ReactNode;
@@ -9,47 +8,37 @@ interface AccordionProps {
 }
 
 export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
-  const [active, setActive] = useState(false);
-  const [height, setHeight] = useState("0px");
-  const [rotate, setRotate] = useState("transform duration-700 ease");
+  const [isOpen, setIsOpen] = useState(false);
 
-  const contentSpace = useRef(null);
-
-  function toggleAccordion() {
-    setActive((prevState) => !prevState);
-    // @ts-ignore
-    setHeight(active ? "0px" : `${contentSpace.current.scrollHeight}px`);
-    setRotate(
-      active
-        ? "transform duration-700 ease"
-        : "transform duration-700 ease rotate-180"
-    );
+  const toggleOpen = () => {
+    setIsOpen(value => !value);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }
 
+
   return (
-    <View style={tw`flex flex-col my-10 text-center justify-center items-center text-white w-full`}>
-       <TouchableOpacity onPress={() => toggleAccordion()}>
-        <Text >
-          {/* {type} */}
-          hello
-        </Text>
     
+    <View style={tw`flex mb-5 w-full flex-col text-center justify-center items-center text-white w-full`}>
+        <TouchableOpacity onPress={toggleOpen} activeOpacity={0.6}>
+        <Text style={tw`text-white mt-5`}>
+          {title}
+        </Text>
       </TouchableOpacity>
-        {/* <View style={tw`text-center`}>{title}</View> */}
-        {/* <img
-          src={arrow}
-          alt="arrow"
-          height="13"
-          width="13"
-          color="white"
-          className={`${rotate}`}
-        ></img> */}
-      <View
-        ref={contentSpace}
-        style={tw`overflow-auto w-full transition-max-height duration-700 ease-in-out max-h-${height}`}
- >
-        <View style={tw`w-full`}>{content}</View>
-      </View>
+      <View style={[styles.list, !isOpen ? styles.hidden : undefined]}>
+        {content}
+          </View>
+          
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  hidden: {
+    height: 0,
+      width: "100%"
+  },
+  list: {
+      overflow: 'hidden',
+      width: "100%"
+  },
+});
