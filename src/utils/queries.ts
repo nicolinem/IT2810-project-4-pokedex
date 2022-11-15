@@ -116,6 +116,25 @@ query Pokemon($name: String, $offset: Int, $sort: SortDirection) {
 }
 `;
 
+ export const GET_POKEMON = gql`
+    query ($input: Int) {
+      getPokemonOnID(input: $input) {
+        name
+        pokemonID
+        attack
+        defence
+        sp_attack
+        sp_defence
+        speed
+        height
+        weight
+        hp
+        type1
+        type2
+      }
+    }
+  `;
+
 export const POKEMON = gql`
 query Pokemon($offset: Int = 0, $sort: SortDirection) {
   pokemon(
