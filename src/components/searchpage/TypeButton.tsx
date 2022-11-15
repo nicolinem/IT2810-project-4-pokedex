@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { matchTypeColor } from "../../types/pokemon.utils";
+import {  Text, TouchableOpacity } from "react-native";
 import tw from 'twrnc';
 import { colorMapping } from "../../types/types.utils";
 
@@ -11,7 +10,12 @@ type Props = {
 
 const TypeButton: React.FC<Props> = ({ type, activateButton }) => {
   const [switchState, setSwitchState] = useState(false);
-  const [styling, setStyling] = useState({...styles.typeText});
+
+  const color = colorMapping[type.toLowerCase()];
+  const style = "py-1 px-4 rounded-full my-1 min-w-22 capitalize border-2 border-[#121A36]"
+  const activeStyling = "border-2 border-white"
+
+  const [styling, setStyling] = useState(style);
 
   const handleOnChange = () => {
     const state = switchState;
@@ -20,52 +24,27 @@ const TypeButton: React.FC<Props> = ({ type, activateButton }) => {
     activateButton(type);
 
     if (!state) {
-      setStyling(
-        {...styles.typeText, ...styles.activeChip}
-      );
+      setStyling( style + activeStyling);
     } else {
-      setStyling(
-        {...styles.typeText}
-      );
+      setStyling( style );
     }
   };
 
+
+
+  
+
   return (
-    <TouchableOpacity onPress={() => handleOnChange()}>
-        <Text style={{
-                ...styling,
-        backgroundColor: colorMapping[type],
-                
-              }}>
+    <TouchableOpacity onPress={() => handleOnChange()} style={tw`bg-[${color}] ${styling} `}>
+      <Text
+         style={tw`text-white font-bold text-center capitalize`}
+      >
               {type}
         </Text>
     
     </TouchableOpacity>
   );
 };
-const styles = StyleSheet.create({
- 
-  typeText: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 3,
-    paddingBottom: 3,
-    margin: 'auto',
-    marginTop: 10,
-    textAlign: 'center',
-    fontSize: 12,
-    borderRadius: 12,
-    color: 'white',
-    textTransform: 'capitalize',
-    overflow: "hidden",
-    minWidth: 70,
-    borderWidth: 2,
-    borderColor: "#121A36",
-  }, activeChip: {
-    borderWidth: 2,
-    borderColor: 'white',
-  }
-});
 
             
 export default TypeButton;

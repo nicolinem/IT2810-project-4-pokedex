@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FlatList, View } from "react-native";
 import TypeButton from "./TypeButton";
 import tw from 'twrnc';
+import { types } from "../../utils/constants";
 
 type props = {
   getActiveTypes: (activeTypes: string[]) => void;
@@ -10,26 +11,7 @@ type props = {
 export const TypeButtonContainer: React.FC<props> = ({ getActiveTypes }) => {
   const [activeTypes, setactiveTypes] = useState<string[]>([]);
 
-  const types: string[] = [
-    "bug",
-    "dark",
-    "dragon",
-    "electric",
-    "fairy",
-    "fighting",
-    "fire",
-    "flying",
-    "ghost",
-    "ground",
-    "ice",
-    "normal",
-    "poison",
-    "psychic",
-    "rock",
-    "steel",
-    "water",
-    "grass",
-  ];
+
 
   const activateButton = (type: string): void => {
     var currentTypes: string[] = activeTypes;
@@ -46,14 +28,9 @@ export const TypeButtonContainer: React.FC<props> = ({ getActiveTypes }) => {
     getActiveTypes(activeTypes);
   };
 
-  // const typeButtons = (types: string[]) => {
-  //   return types.map((type: string) => (
-      
-  //   ));
-  // };
 
   return (
-    <View style={tw`w-2/3 mx-auto mt-5`}>
+    <View style={tw`min-w-3/4 mx-auto mt-5`}>
      <FlatList
         columnWrapperStyle={{ justifyContent: 'space-evenly' }}
         numColumns={3}
