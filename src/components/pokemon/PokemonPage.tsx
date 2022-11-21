@@ -12,6 +12,7 @@ import { GET_POKEMON } from '../../utils/queries';
 import useReviews from '../../hooks/useReviews';
 import Reviews from './Reviews';
 import { Accordion } from '../searchpage/Accordion';
+import { colorMapping } from '../../types/types.utils';
 
 
 
@@ -47,6 +48,7 @@ export const PokemonPage = () => {
   const { getPokemonOnID } = data;
   const pokemonStats = parsePokemonData(getPokemonOnID[0]);
   const pokemon: Pokemon = getPokemonOnID[0];
+  const color = colorMapping[pokemon.type1.toLowerCase()];
 
 
 
@@ -65,14 +67,18 @@ export const PokemonPage = () => {
             }}
           
           />
-        <Text>{getPokemonOnID[0].name} </Text>
+        <Text style={tw`font-bold text-center uppercase text-md`}>{getPokemonOnID[0].name} </Text>
         
-        <TypeLabel type={pokemon.type1} />
+        <View style={tw`flex flex-row mt-2`}>
+          <TypeLabel type={pokemon.type1} />
         
         {pokemon.type2 &&
           <TypeLabel type={pokemon.type2} />
         }
-            {pokemonStats.map((item) => <StatBar stat={item.value} statName={item.name} ></StatBar>)}
+          
+        </View>
+        
+        {pokemonStats.map((item) => <StatBar color={ color} stat={item.value} statName={item.name} ></StatBar>)}
           
           </View>
           
