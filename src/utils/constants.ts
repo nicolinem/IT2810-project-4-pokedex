@@ -18,3 +18,8 @@
     "water",
     "grass",
   ];
+
+    export const sortData = [
+    { key: '3', value: 'ID Ascending' },
+    { key: '4', value: 'ID Descending' },
+  ]
