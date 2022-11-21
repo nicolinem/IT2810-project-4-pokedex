@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { FlatList, View } from "react-native";
+import { SetStateAction, useState } from "react";
+import { FlatList, Image, Text, View } from "react-native";
 import TypeButton from "./TypeButton";
 import tw from 'twrnc';
 import { types } from "../../utils/constants";
-
+import { SelectList } from 'react-native-dropdown-select-list'
+import arrowImage from "../../public/assets/arrow.png";
 type props = {
   getActiveTypes: (activeTypes: string[]) => void;
 };
@@ -29,14 +30,23 @@ export const TypeButtonContainer: React.FC<props> = ({ getActiveTypes }) => {
   };
 
 
+  
+
+
+  console.log(arrowImage)
+
+
   return (
-    <View style={tw`min-w-3/4 mx-auto mt-5`}>
+    <View style={tw`w-4/5 mx-auto my-3`}>
+
+
+       
      <FlatList
         columnWrapperStyle={{ justifyContent: 'space-evenly' }}
         numColumns={3}
         data={types}
         renderItem={({ item }) => <TypeButton type={item} activateButton={() => activateButton(item)}></TypeButton>} /> 
-
+     
     </View>
   );
 };

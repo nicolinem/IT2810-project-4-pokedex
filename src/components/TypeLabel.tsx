@@ -14,7 +14,7 @@ const TypeLabel = ({ type }: Props) => {
 
 
   return (
-    <View style={tw`bg-[${color}] py-1 px-4 rounded-full my-1 min-w-20 `}>
+    <View style={tw`bg-[${color}] py-1 px-4 rounded-full bg-opacity-80 mx-3 my-1 min-w-20 `}>
       <Text
         style={tw`text-white font-bold text-center capitalize`}
       

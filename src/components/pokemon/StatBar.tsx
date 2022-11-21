@@ -6,10 +6,11 @@ import tw from 'twrnc';
 type Props = {
     stat: number,
     statName: string
+    color: string
 }
  
  
-const StatBar = ({ stat, statName }: Props) => {
+const StatBar = ({ stat, statName, color }: Props) => {
 
     let status = stat;
     if (stat > 100) {
@@ -25,14 +26,14 @@ const StatBar = ({ stat, statName }: Props) => {
 
     return (
         <View style={tw`w-3/4 mt-2`}>
-            <Text> {statName} </Text>
+            <Text style={tw`font-bold uppercase text-xs`} > {statName} </Text>
             {stat > 100 && 
-            <View style={tw`h-4 mt-2 bg-blue-600 rounded-full h-2.5`}>
+            <View style={tw`h-4 mt-2 bg-[${color}] bg-opacity-30 rounded-full `}>
         </View>}
             
-        <View style={tw`h-4 mt-2 bg-gray-200 rounded-full h-2.5 `}>
+        <View style={tw`h-4 mt-2 bg-gray-200 rounded-full`}>
             <View style={styles.progressBar}>
-                <View style={tw`bg-blue-600 h-2.5 rounded-full w-full`} ></View>
+                <View style={tw`bg-[${color}] bg-opacity-30 h-4 rounded-full w-full`} ></View>
             </View>
         
         </View>

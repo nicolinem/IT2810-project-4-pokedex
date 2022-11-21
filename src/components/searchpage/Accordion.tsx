@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, LayoutAnimation, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import tw from 'twrnc';
+const arrot = require('../../public/assets/arrow.png')
+const arrowup = require('../../public/assets/arrowup.png')
 
 interface AccordionProps {
   title: React.ReactNode;
@@ -8,26 +10,44 @@ interface AccordionProps {
 }
 
 export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
+  const [active, setActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [source, setSource] = useState(arrot);
+
 
   const toggleOpen = () => {
+    setActive((prevState) => !prevState);
     setIsOpen(value => !value);
+     setSource(
+      active
+        ? arrot
+        : arrowup
+    );
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+   
   }
-
 
   return (
     
-    <View style={tw`flex mb-5 w-full flex-col text-center justify-center items-center text-white w-full`}>
-        <TouchableOpacity onPress={toggleOpen} activeOpacity={0.6}>
-        <Text style={tw`text-white mt-5`}>
+    <View >
+        <TouchableOpacity style={tw`flex mb w-full flex-col text-center justify-center items-center text-white w-full`} onPress={toggleOpen} activeOpacity={0.6}>
+        <Text style={tw`text-white mt-3`}>
           {title}
         </Text>
+       
       </TouchableOpacity>
       <View style={[styles.list, !isOpen ? styles.hidden : undefined]}>
         {content}
-          </View>
-          
+      </View>
+      
+      <TouchableOpacity style={tw`flex mb-4 w-full flex-col text-center justify-center items-center text-white w-full`} onPress={toggleOpen} activeOpacity={0.6}>
+           <Image
+            style={tw`w-3 h-3`}
+            source={source}
+          />
+       
+      </TouchableOpacity>
+           
     </View>
   );
 };
