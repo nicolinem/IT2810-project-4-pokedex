@@ -4,8 +4,8 @@ Pokedèx er en videreutvikling av prosjekt 3, og er en applikasjon for å søke 
 
 Hovedsiden lar brukeren søke på pokemon på navn, filtrere på type og sortere etter pokemonID. Ved å søke lastes de første 25 pokemonene, og flere laster automatisk når brukeren scroller til bunnen av listen. Ved å trykke på et pokèmon-kort vil brukeren se en oversikt over statistikken til pokèmonene samt eventuelle anmeldelser. Dersom brukeren er logget inn vil den kunne etterlate en review. For å logge inn kan brukeren klikke på “Sign In” overst i høyre hjørne, og kan opprette en bruker dersom den ikke har det.
 
-<img src="screen1" alt="cypress test" width="400" />
-<img src="screen2" alt="cypress test" width="400" />
+<img src="screen1.png" alt="cypress test" width="400" />
+<img src="screen2.png" alt="cypress test" width="400" />
 
 # Oppsett
 
