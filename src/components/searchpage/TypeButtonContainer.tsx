@@ -33,7 +33,6 @@ export const TypeButtonContainer: React.FC<props> = ({ getActiveTypes }) => {
   
 
 
-  console.log(arrowImage)
 
 
   return (
