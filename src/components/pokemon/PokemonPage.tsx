@@ -57,27 +57,37 @@ export const PokemonPage = () => {
      <ScrollView >
      
         <View
-          style={tw`w-full flex items-center justify-center`}
+          style={tw`w-full flex items-center justify-center `}
           
-        >
+      >
+         <Text style={tw`font-bold text-center uppercase text-xl mt-4`}>{getPokemonOnID[0].name} </Text>
+        <View style={tw`w-full flex-row items-center justify-center`}>
           <Image
             style={tw`w-44 h-44`}
             source={{
               uri: getImageUrl(getPokemonOnID[0].pokemonID),
             }}
           
-          />
-        <Text style={tw`font-bold text-center uppercase text-md`}>{getPokemonOnID[0].name} </Text>
+        />
+
+        <View>
+       
         
-        <View style={tw`flex flex-row mt-2`}>
+        <View style={tw`flex flex mt-2`}>
           <TypeLabel type={pokemon.type1} />
         
         {pokemon.type2 &&
           <TypeLabel type={pokemon.type2} />
         }
           
+          </View>
+        <Text style={tw` px-4 text-left mt-3 font-semibold text-gray-700`}>Height: { pokemon.height}</Text>
+        <Text style={tw` px-4 text-left my-3 font-semibold text-gray-700`}>Weight: { pokemon.weight}</Text>
+          </View>
+          </View>
+
+        <View>
         </View>
-        
         {pokemonStats.map((item) => <StatBar color={ color} stat={item.value} statName={item.name} key={item.name}></StatBar>)}
           
           </View>

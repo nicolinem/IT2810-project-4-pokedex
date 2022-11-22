@@ -36,9 +36,12 @@ export default function LoginPage() {
     
   useEffect(() => {
     if (status === 200) {
-      navigation.goBack();
+      navigation.navigate("Home");
     }
   }, [status])  
+
+
+   
  
 
   return (

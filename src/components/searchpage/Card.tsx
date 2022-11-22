@@ -19,30 +19,23 @@ const Card: React.FC<Props> = ({ pokemon }) => {
     const color = colorMapping[pokemon.type1.toLowerCase()];
 
   return (
-    <TouchableOpacity style={tw`w-2/5 ` } onPress={() => {navigation.navigate('Pokemon', {id: pokemon.pokemonID})}}> 
+    <TouchableOpacity style={tw`w-2/5  ` } onPress={() => {navigation.navigate('Pokemon', {id: pokemon.pokemonID})}}> 
       <View
-        style={tw`mt-5 w-full bg-opacity-30 bg-[${color}] flex flex-col content-start justify-start items-center py-4 border-gray-400 rounded-lg shadow-lg`}
+        style={tw`mt-5 w-full bg-opacity-30 bg-[${color}] flex flex-col content-start justify-start items-center py-4 border-gray-400 rounded-lg `}
       >
        
 
-        {/* <View style={tw`bg-white w-full shadow-md` }> */}
-        <Text style={tw`my-3 font-bold text-[${color}] capitalize w-full text-center`}>
+        <Text style={tw`my-3 font-bold  uppercase text-xs w-full text-center`}>
                 {pokemon.name}
         </Text>
-        
-        {/* <TypeLabel type={pokemon.type1} />
-       
-        {pokemon.type2 &&
-          <TypeLabel type={pokemon.type2}/>
-          } */}
-        {/* </View> */}
          <Image
           style={tw`w-32 h-32`}
           source={{
             uri: pokemonimage,
           }} />
+        <Text style={tw` font-bold text-gray-600 text-xs w-full text-center`}>#{ pokemon.pokemonID}</Text>
       </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
   );
 };
 

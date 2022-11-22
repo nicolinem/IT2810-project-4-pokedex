@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
-import { Button, View } from 'react-native'
+import { Button, Pressable, Text, View } from 'react-native'
 import tw from 'twrnc'
 import useProfile from '../../hooks/useProfile';
 import { useSignout } from '../../hooks/useSignOut';
@@ -39,18 +39,16 @@ const LoginButton = () => {
          {
           (!auth) ?
              <View style={tw`absolute right-2 z-10`}>
-               <Button
+               <Pressable
               onPress={() => navigation.navigate('Login')}
-              title="Sign in"
-              color="#fff"
-            />
+              // color="#fff"
+            ><Text style={tw`text-white`}>Sign In</Text></Pressable>
           </View> :
           <View style={tw`absolute right-2 z-10`}>
-               <Button
+               <Pressable
               onPress={() => signout()}
-              title="Sign out"
-              color="#fff"
-            />
+            ><Text style={tw`text-white`}>Sign out</Text>
+              </Pressable>
           </View>
         }
            </>

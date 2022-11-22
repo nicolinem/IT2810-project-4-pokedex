@@ -1,10 +1,8 @@
-import { SetStateAction, useState } from "react";
-import { FlatList, Image, Text, View } from "react-native";
+import {  useState } from "react";
+import { FlatList, View } from "react-native";
 import TypeButton from "./TypeButton";
 import tw from 'twrnc';
 import { types } from "../../utils/constants";
-import { SelectList } from 'react-native-dropdown-select-list'
-import arrowImage from "../../public/assets/arrow.png";
 type props = {
   getActiveTypes: (activeTypes: string[]) => void;
 };
