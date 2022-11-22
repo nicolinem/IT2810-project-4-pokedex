@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { gql } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import useProfile from './useProfile';
-import { isLoggedInVar } from '../cache';
+// import { isLoggedInVar } from '../cache';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 
 type Credentials = {
@@ -30,7 +31,7 @@ export function useRegister() {
   const [Register, { data, error }] = useMutation(REGISTER_QUERY);
   const { refetch } = useProfile();
  
-
+  
 
   useEffect(() => {
     if (data?.Signup) {
@@ -41,21 +42,26 @@ export function useRegister() {
             data.Signup
           ).then(() => {
             refetch();
-            isLoggedInVar(true);
+            // isLoggedInVar(true);
           });
         } catch (error) {
-          // Error saving data
+          Alert.alert(
+          "This alert was dismissed by tapping outside of the alert dialog."
+        )
         }
-        // refetch();
       }
-     
-      // refetch();
+     _storeData();
+      refetch();
     }
+    
+
   }, [data, refetch]);
 
   return {
     error,
-    register: (credentials: Credentials) =>
-      Register({ variables: { ...credentials} }),
+    register: (credentials: Credentials) => {
+      Register({ variables: { ...credentials } });
+      }
+    }
+    
   };
-}

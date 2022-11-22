@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { useEffect } from "react";
-import { isLoggedInVar } from "../cache";
+// import { isLoggedInVar } from "../cache";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useProfile from "./useProfile";
 
@@ -26,16 +26,12 @@ export function useLogin() {
 
     if (data?.Login) {
       const _storeData = async () => {
-        try {
-          await AsyncStorage.setItem(
-            'token',
-            data.Login
-          ).then(() => refetch());
-        } catch (error) {
-          // Error saving data
-        }
-        // localStorage.setItem("token", data.Login);
+        await AsyncStorage.setItem(
+          'token',
+          data.Login
+        ).then(() => { refetch(), console.log("logged in") });
       }
+      _storeData();
     }
   }, [data, refetch]);
 
@@ -46,8 +42,6 @@ export function useLogin() {
 
       Login({ variables: { ...credentials } }).then((res) => {
         if (res.data?.Login) {
-          // localStorage.setItem("token", res.data.Login);
-          isLoggedInVar(true);
           refetch();
         }
       }
