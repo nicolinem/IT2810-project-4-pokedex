@@ -61,7 +61,7 @@ export const PokemonPage = () => {
           
         >
           <Image
-            style={tw`w-52 h-52`}
+            style={tw`w-44 h-44`}
             source={{
               uri: getImageUrl(getPokemonOnID[0].pokemonID),
             }}
@@ -78,14 +78,14 @@ export const PokemonPage = () => {
           
         </View>
         
-        {pokemonStats.map((item) => <StatBar color={ color} stat={item.value} statName={item.name} ></StatBar>)}
+        {pokemonStats.map((item) => <StatBar color={ color} stat={item.value} statName={item.name} key={item.name}></StatBar>)}
           
           </View>
           
           <View style={tw`flex flex-1 mt-5 w-full`}>
           </View>
 
-          <Accordion title={"Reviews"} content={<Reviews reviews={reviews} refetchReviews={refetchReviews }></Reviews>}></Accordion>
+      <Reviews reviews={reviews} refetchReviews={refetchReviews }></Reviews>
           
       </ScrollView>
   )
