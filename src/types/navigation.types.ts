@@ -6,6 +6,8 @@ export type StackNavigatorParamList = {
   Pokemon: {
     id: number;
   };
+  Login: undefined;
+  Signup: undefined;
 };
 
 export type CardNavigationProp = NativeStackNavigationProp<
@@ -16,4 +18,11 @@ export type CardNavigationProp = NativeStackNavigationProp<
     export type PokemonScreenRouteProp = RouteProp<
   StackNavigatorParamList,
   'Pokemon'
->;
+      >;
+
+      export type LoginNavigationProp = NativeStackNavigationProp<
+  StackNavigatorParamList,
+        'Login',
+  'Signin'
+  
+    >;
