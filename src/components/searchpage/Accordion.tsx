@@ -15,6 +15,8 @@ export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
   const [source, setSource] = useState(arrot);
 
 
+
+
   const toggleOpen = () => {
     setActive((prevState) => !prevState);
     setIsOpen(value => !value);
@@ -29,9 +31,9 @@ export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
 
   return (
     
-    <View >
-        <TouchableOpacity style={tw`flex mb w-full flex-col text-center justify-center items-center text-white w-full`} onPress={toggleOpen} activeOpacity={0.6}>
-        <Text style={tw`text-white mt-3`}>
+    <View style={tw`my-3`}>
+        <TouchableOpacity style={tw`flex w-full flex-col text-center justify-center items-center text-white w-full`} onPress={toggleOpen} activeOpacity={0.6}>
+        <Text style={tw`text-white`}>
           {title}
         </Text>
        
@@ -40,7 +42,7 @@ export const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
         {content}
       </View>
       
-      <TouchableOpacity style={tw`flex mb-4 w-full flex-col text-center justify-center items-center text-white w-full`} onPress={toggleOpen} activeOpacity={0.6}>
+      <TouchableOpacity style={tw`flex w-full flex-col text-center justify-center items-center text-white w-full`} onPress={toggleOpen} activeOpacity={0.6}>
            <Image
             style={tw`w-3 h-3`}
             source={source}
