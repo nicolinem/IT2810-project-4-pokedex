@@ -1,7 +1,8 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import Comments from "./Comments";
 import tw from 'twrnc';
 import { NewReview } from "./NewReview";
+import useProfile from "../../hooks/useProfile";
 
 
 type Review = {
@@ -18,14 +19,19 @@ type Props = {
 };
 
 const Reviews = ({ reviews, refetchReviews }: Props) => {
+  const { status } = useProfile();
+  
+
   return (
+
     <View style={tw``}>
       <View >
         {reviews.map((p) => (
-          <Comments  review={p}></Comments>
+          <Comments key={p._id} review={p}></Comments>
         ))}
       </View>
-      <NewReview refetchReviews={refetchReviews}></NewReview>
+      {(status == 200) ? <NewReview refetchReviews={refetchReviews} />:
+      <Text style={tw`text-center my-5`}> Sign in to leave a review</Text>}
     </View>
   );
 };
