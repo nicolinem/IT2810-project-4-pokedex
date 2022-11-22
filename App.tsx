@@ -1,27 +1,26 @@
-import { ApolloClient, ApolloProvider, gql, InMemoryCache, useQuery } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, AppRegistry, Button, Pressable } from 'react-native';
+import { AppRegistry } from 'react-native';
 import { PokemonPage } from "./src/components/pokemon/PokemonPage"
+import LoginPage from './src/components/login/Login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchPage from './src/components/searchpage/SearchPage';
+import RegistrationPage from './src/components/login/Registration';
+import LoginButton from './src/components/login/LoginButton';
+import { client } from './cache';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const client = new ApolloClient({
-    uri: 'http://it2810-01.idi.ntnu.no:4001/graphql',
-    cache: new InMemoryCache()
-});
-
-  
 
   return (
       <ApolloProvider client={client}>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={() => ({
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={() => ({
+          
                 headerStyle: {
                 backgroundColor: "#121A36",
                 
@@ -33,11 +32,32 @@ export default function App() {
               component={SearchPage}
                 options={{
                   title: 'P o k è d e x',
+                  headerRight: () => (
+                  <>
+                <LoginButton></LoginButton>
+                  </>
+          ),
                   }}
             />
               <Stack.Screen
               name="Pokemon"
               component={PokemonPage}
+              options={{
+              title: '',
+              headerRight: () => (
+                <>
+                  <LoginButton></LoginButton>
+                </>
+          ),}}
+            />
+              <Stack.Screen
+              name="Login"
+              component={LoginPage}
+              options={{ title: '' }}
+            />
+              <Stack.Screen
+              name="Signup"
+              component={RegistrationPage}
               options={{ title: '' }}
             />
           
